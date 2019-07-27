@@ -297,7 +297,7 @@ Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 N
 
 ### 基本架构及概念
 
-![img](https://www.funtl.com/assets1/nacos-Arch.jpg)
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-dependencies/resources/nacos-start.png?raw=true)
 
 #### 服务 (Service)
 
