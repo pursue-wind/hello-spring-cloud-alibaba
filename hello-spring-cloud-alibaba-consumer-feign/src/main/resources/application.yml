@@ -14,3 +14,8 @@ management:
     web:
       exposure:
         include: "*"
+
+#sentinel
+feign:
+  sentinel:
+    enabled: true
