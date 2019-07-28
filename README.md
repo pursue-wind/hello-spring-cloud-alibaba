@@ -297,7 +297,7 @@ Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 N
 
 ### 基本架构及概念
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-dependencies/resources/nacos-start.png?raw=true)
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-start.png?raw=true)
 
 #### 服务 (Service)
 
@@ -362,6 +362,12 @@ mvn -Prelease-nacos clean install -U
 
 ### 启动服务
 
+
+
+
+
+
+
 ```bash
 cd distribution/target/nacos-server-0.7.0/nacos/bin
 
@@ -372,13 +378,13 @@ cd distribution/target/nacos-server-0.7.0/nacos/bin
 startup.cmd
 ```
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-dependencies/resources/nacos-start.png?raw=true)
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-start.png?raw=true)
 
 ### 访问服务
 
 打开浏览器访问：http://127.0.0.1:8848/nacos
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-dependencies/resources/nacos.png?raw=true)
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos.png?raw=true)
 
 **注：从 0.8.0 版本开始，需要登录才可访问，默认账号密码为 nacos/nacos**
 
@@ -515,7 +521,7 @@ management:
 
 通过浏览器访问 `http://localhost:8848/nacos`，即 Nacos Server 网址
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-dependencies/resources/nacos-provider.png?raw=true)
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-provider.png?raw=true)
 
 你会发现一个服务已经注册在服务中了，服务名为 `nacos-provider`
 
@@ -536,7 +542,7 @@ spring-cloud-starter-alibaba-nacos-discovery 在实现的时候提供了一个 E
 
 访问 `http://localhost:8081/actuator/nacos-discovery` 你会看到：
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-dependencies/resources/nacos-discovery.png?raw=true)
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-discovery.png?raw=true)
 
 ### 附：nacos-starter-更多配置项信息)附：Nacos Starter 更多配置项信息
 
@@ -732,7 +738,7 @@ management:
 
 通过浏览器访问 `http://localhost:8848/nacos`，即 Nacos Server 网址
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-dependencies/resources/consumer.png?raw=true)
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/consumer.png?raw=true)
 
 你会发现多了一个名为 `nacos-consumer` 的服务
 
@@ -747,4 +753,229 @@ Hello Nacos Discovery consumer
 
 通过浏览器访问 `http://localhost:9091/actuator/nacos-discovery` 你会在浏览器上看到：
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-dependencies/resources/nacos-discovery2.png?raw=true)
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-discovery2.png?raw=true)
+
+## 创建服务消费者（Feign）
+
+### 概述
+
+Feign 是一个声明式的伪 Http 客户端，它使得写 Http 客户端变得更简单。使用 Feign，只需要创建一个接口并注解。它具有可插拔的注解特性，可使用 Feign 注解和 JAX-RS 注解。Feign 支持可插拔的编码器和解码器。Feign 默认集成了 Ribbon，Nacos 也很好的兼容了 Feign，默认实现了负载均衡的效果
+
+- Feign 采用的是基于接口的注解
+- Feign 整合了 ribbon
+
+### POM
+
+创建一个工程名为 `hello-spring-cloud-alibaba-nacos-consumer-feign` 的服务消费者项目，`pom.xml` 配置如下：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.mirrorming</groupId>
+        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>hello-spring-cloud-alibaba-consumer-feign</artifactId>
+    <packaging>jar</packaging>
+
+    <name>hello-spring-cloud-alibaba-consumer-feign</name>
+    <url>http://www.mirrorming.cn</url>
+    <inceptionYear>2019-Now</inceptionYear>
+
+    <dependencies>
+        <!-- Spring Boot Begin -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- Spring Boot End -->
+
+        <!-- Spring Cloud Begin -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- Spring Cloud End -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>cn.mirrorming.spring.cloud.alibaba.consumer.feign.ConsumerFeignApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+主要增加了 `org.springframework.cloud:spring-cloud-starter-openfeign` 依赖
+
+### Application
+
+通过 `@EnableFeignClients` 注解开启 Feign 功能
+
+```java
+package cn.mirrorming.spring.cloud.alibaba.consumer.feign;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+/**
+ * @author mirror
+ */
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+public class ConsumerFeignApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ConsumerFeignApplication.class, args);
+    }
+}
+```
+
+### 创建 Feign 接口
+
+通过 `@FeignClient("服务名")` 注解来指定调用哪个服务。代码如下：
+
+```java
+package cn.mirrorming.spring.cloud.alibaba.consumer.feign.service;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@FeignClient(value = "provider")
+public interface ProviderService {
+
+    @GetMapping(value = "/echo/{message}")
+    String echo(@PathVariable String message);
+}
+
+```
+
+### Controller
+
+```java
+package cn.mirrorming.spring.cloud.alibaba.consumer.feign.controller;
+
+import cn.mirrorming.spring.cloud.alibaba.consumer.feign.service.ProviderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ProviderController {
+
+    @Autowired
+    private ProviderService providerService;
+
+    @GetMapping("echo")
+    public String echo() {
+        return providerService.echo("Feign Client");
+    }
+}
+```
+
+
+
+### application.yml
+
+```yaml
+spring:
+  application:
+    name: consumer-feign
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+server:
+  port: 9092
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+### 启动工程
+
+这时打开 `http://localhost:9092/echo` ，你会在浏览器上看到：
+
+```html
+Hello Nacos Discovery Hi Feign
+```
+
+### 测试负载均衡
+
+- IDEA设置
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/loadbalance-setting.png?raw=true)
+
+- 启动多个 `consumer-provider` 实例
+
+- 修改 `consumer-provider` 项目中的 `Controller` 代码，用于确定负载均衡生效
+
+```java
+package com.funtl.hello.spring.cloud.alibaba.nacos.provider;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class NacosProviderApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(NacosProviderApplication.class, args);
+    }
+
+    @Value("${server.port}")
+    private String port;
+
+    @RestController
+    public class EchoController {
+        @GetMapping(value = "/echo/{message}")
+        public String echo(@PathVariable String message) {
+            return "Hello Nacos Discovery " + message + " i am from port " + port;
+        }
+    }
+}
+```
+
+- 在浏览器上多次访问 `http://localhost:9092/echo/` ，浏览器交替显示：
+
+```html
+Hello Nacos Discovery Feign Client , From port :8081
+Hello Nacos Discovery Feign Client , From port :8082
+```
