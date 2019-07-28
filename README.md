@@ -1037,7 +1037,7 @@ public class ProviderServiceFallback implements ProviderService {
 ```
 ### 测试熔断器
 
-此时我们关闭服务提供者，再次请求 http://localhost:9092/echo/浏览器会显示：
+此时我们关闭服务提供者，再次请求 http://localhost:9092/echo/ 浏览器会显示：
 
 ```html
 sentinel fallback
