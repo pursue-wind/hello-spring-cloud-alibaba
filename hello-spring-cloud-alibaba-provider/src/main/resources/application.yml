@@ -7,7 +7,7 @@ spring:
         server-addr: 127.0.0.1:8848
 
 server:
-  port: 8081
+  port: 8082
 
 management:
   endpoints:
