@@ -1,4 +1,39 @@
-# hello-spring-cloud-alibaba
+hello-spring-cloud-alibaba
+
+## 简介
+### 概述
+
+**2018 年 10 月 31 日的凌晨，Spring Cloud Alibaba 正式入驻了 Spring Cloud 官方孵化器，并在 Maven 中央库发布了第一个版本。**
+
+[Spring Cloud for Alibaba 0.2.0 released](https://spring.io/blog/2018/10/30/spring-cloud-for-alibaba-0-2-0-released)
+
+> The Spring Cloud Alibaba project, consisting of Alibaba’s open-source components and several Alibaba Cloud products, aims to implement and expose well known Spring Framework patterns and abstractions to bring the benefits of Spring Boot and Spring Cloud to Java developers using Alibaba products.
+
+> Spring Cloud for Alibaba，它是由一些阿里巴巴的开源组件和云产品组成的。这个项目的目的是为了让大家所熟知的 Spring 框架，其优秀的设计模式和抽象理念，以给使用阿里巴巴产品的 Java 开发者带来使用 Spring Boot 和 Spring Cloud 的更多便利。
+
+Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。此项目包含开发分布式应用微服务的必需组件，方便开发者通过 Spring Cloud 编程模型轻松使用这些组件来开发分布式应用服务。
+
+依托 Spring Cloud Alibaba，您只需要添加一些注解和少量配置，就可以将 Spring Cloud 应用接入阿里微服务解决方案，通过阿里中间件来迅速搭建分布式应用系统。
+
+[Spring Cloud Alibaba GitHub](https://github.com/spring-cloud-incubator/spring-cloud-alibaba/blob/master/README-zh.md)
+
+### 主要功能
+
+- **服务限流降级**：默认支持 Servlet、Feign、RestTemplate、Dubbo 和 RocketMQ 限流降级功能的接入，可以在运行时通过控制台实时修改限流降级规则，还支持查看限流降级 Metrics 监控。
+- **服务注册与发现**：适配 Spring Cloud 服务注册与发现标准，默认集成了 Ribbon 的支持。
+- **分布式配置管理**：支持分布式系统中的外部化配置，配置更改时自动刷新。
+- **消息驱动能力**：基于 Spring Cloud Stream 为微服务应用构建消息驱动能力。
+- **阿里云对象存储**：阿里云提供的海量、安全、低成本、高可靠的云存储服务。支持在任何应用、任何时间、任何地点存储和访问任意类型的数据。
+- **分布式任务调度**：提供秒级、精准、高可靠、高可用的定时（基于 Cron 表达式）任务调度服务。同时提供分布式的任务执行模型，如网格任务。网格任务支持海量子任务均匀分配到所有 Worker（schedulerx-client）上执行。
+
+### 组件
+
+- **Sentinel**：把流量作为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。
+- **Nacos**：一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
+- **RocketMQ**：一款开源的分布式消息系统，基于高可用分布式集群技术，提供低延时的、高可靠的消息发布与订阅服务。
+- **Alibaba Cloud ACM**：一款在分布式架构环境中对应用配置进行集中管理和推送的应用配置中心产品。
+- **Alibaba Cloud OSS**: 阿里云对象存储服务（Object Storage Service，简称 OSS），是阿里云提供的海量、安全、低成本、高可靠的云存储服务。您可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。
+- **Alibaba Cloud SchedulerX**: 阿里中间件团队开发的一款分布式任务调度产品，提供秒级、精准、高可靠、高可用的定时（基于 Cron 表达式）任务调度服务。
 
 ## 1. 创建统一的依赖管理
 ### 概述
@@ -1042,3 +1077,623 @@ public class ProviderServiceFallback implements ProviderService {
 ```html
 sentinel fallback
 ```
+
+## 7. 使用熔断器仪表盘监控
+
+### Sentinel 控制台
+
+Sentinel 控制台提供一个轻量级的控制台，它提供机器发现、单机资源实时监控、集群资源汇总，以及规则管理的功能。您只需要对应用进行简单的配置，就可以使用这些功能。
+
+**注意:** 集群资源汇总仅支持 500 台以下的应用集群，有大概 1 - 2 秒的延时。
+
+### 下载并打包
+
+```bash
+# 下载源码
+git clone https://github.com/alibaba/Sentinel.git
+
+# 编译打包
+mvn clean package
+```
+
+
+**注：下载依赖时间较长，请耐心等待...**
+
+### 启动控制台
+
+Sentinel 控制台是一个标准的 SpringBoot 应用，以 SpringBoot 的方式运行 jar 包即可。
+
+```bash
+cd sentinel-dashboard\target
+```
+```bash
+java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar
+```
+
+其中 `-Dserver.port=8080` 用于指定 Sentinel 控制台端口为 `8080`。
+
+从 Sentinel 1.6.0 起，Sentinel 控制台引入基本的**登录**功能，默认用户名和密码都是 `sentinel`。可以参考 [鉴权模块文档](https://github.com/alibaba/Sentinel/wiki/控制台#鉴权) 配置用户名和密码。
+
+### 鉴权
+
+从 Sentinel 1.5.0 开始，控制台提供通用的鉴权接口 [AuthService](https://github.com/alibaba/Sentinel/blob/master/sentinel-dashboard/src/main/java/com/alibaba/csp/sentinel/dashboard/auth/AuthService.java)，用户可根据需求自行实现。
+
+从 Sentinel 1.6.0 起，Sentinel 控制台引入基本的**登录**功能，默认用户名和密码都是 `sentinel`。
+
+![login-page](https://user-images.githubusercontent.com/9434884/56669344-94b4d880-66e3-11e9-9553-731d67651a11.png)
+
+用户可以通过如下参数进行配置：
+
+- `-Dsentinel.dashboard.auth.username=sentinel` 用于指定控制台的登录用户名为 `sentinel`；
+- `-Dsentinel.dashboard.auth.password=123456` 用于指定控制台的登录密码为 `123456`；如果省略这两个参数，默认用户和密码均为 `sentinel`；
+- `-Dserver.servlet.session.timeout=7200` 用于指定 Spring Boot 服务端 session 的过期时间，如 `7200` 表示 7200 秒；`60m` 表示 60 分钟，默认为 30 分钟；
+
+同样也可以直接在 Spring properties 文件中进行配置。
+
+### 访问服务
+
+打开浏览器访问：http://localhost:8080/
+
+>  登录账号和密码都是sentinel
+
+### 配置控制台信息
+
+`application.yml` 配置文件中增加如下配置：
+
+```yaml
+spring:
+  cloud:
+    sentinel:
+      transport:
+        # 当前应用被sentinel监控的端口
+        port: 8719
+        # sentinel的dashboard
+        dashboard: 127.0.0.1:8080
+```
+
+这里的 `spring.cloud.sentinel.transport.port` 端口配置会在应用对应的机器上启动一个 Http Server，该 Server 会与 Sentinel 控制台做交互。比如 Sentinel 控制台添加了 1 个限流规则，会把规则数据 push 给这个 Http Server 接收，Http Server 再将规则注册到 Sentinel 中。
+
+### 测试 Sentinel
+
+使用之前的 Feign 客户端，`application.yml` 完整配置如下：
+
+```yaml
+spring:
+  application:
+    name: consumer-feign
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+        # 当前应用被sentinel监控的端口
+        port: 8719
+
+server:
+  port: 9092
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#sentinel
+feign:
+  sentinel:
+    enabled: true
+```
+
+**注：`port: 8719`这里的配置，端口冲突也能注册，会自动帮你在端口号上 + 1；**
+
+打开浏览器访问：[http://127.0.0.1:8080](http://127.0.0.1:8080/)
+
+触发熔断后，此时会多一个名为 `consumer-feign` 的服务
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/sentinel-dashboard.png?raw=true)
+
+
+
+## 8. 使用路由网关统一访问接口
+
+
+### 什么是 Spring Cloud Gateway
+
+Spring Cloud Gateway 是 Spring 官方基于 Spring 5.0，Spring Boot 2.0 和 Project Reactor 等技术开发的网关，Spring Cloud Gateway 旨在为微服务架构提供一种简单而有效的统一的 API 路由管理方式。**Spring Cloud Gateway 作为 Spring Cloud 生态系中的网关，目标是替代 Netflix ZUUL**，其不仅提供统一的路由方式，并且基于 Filter 链的方式提供了网关基本的功能，例如：安全，监控/埋点，和限流等。
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/gateway.jpg?raw=true)
+
+### Spring Cloud Gateway 功能特征
+
+- 基于 Spring Framework 5，Project Reactor 和 Spring Boot 2.0
+- 动态路由
+- Predicates 和 Filters 作用于特定路由
+- 集成 Hystrix 断路器
+- 集成 Spring Cloud DiscoveryClient
+- 易于编写的 Predicates 和 Filters
+- 限流
+- 路径重写
+
+### Spring Cloud Gateway 工程流程
+
+![img](https://raw.githubusercontent.com/spring-cloud/spring-cloud-gateway/master/docs/src/main/asciidoc/images/spring_cloud_gateway_diagram.png)
+
+客户端向 Spring Cloud Gateway 发出请求。然后在 Gateway Handler Mapping 中找到与请求相匹配的路由，将其发送到 Gateway Web Handler。Handler 再通过指定的过滤器链来将请求发送到我们实际的服务执行业务逻辑，然后返回。
+
+过滤器之间用虚线分开是因为过滤器可能会在发送代理请求之前（`pre`）或之后（`post`）执行业务逻辑。
+
+### POM
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.mirrorming</groupId>
+        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>hello-spring-cloud-alibaba-gateway</artifactId>
+    <packaging>jar</packaging>
+
+    <name>hello-spring-cloud-alibaba-gateway</name>
+    <url>http://www.mirrorming.cn</url>
+    <inceptionYear>2019-Now</inceptionYear>
+
+    <dependencies>
+        <!-- Spring Boot Begin -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- Spring Boot End -->
+
+        <!-- Spring Cloud Begin -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <!-- Spring Cloud End -->
+
+        <!-- Commons Begin -->
+        <!--需要过滤器-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <!-- Commons Begin -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>cn.mirrorming.spring.cloud.gateway.GatewayApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+主要增加了 `org.springframework.cloud:spring-cloud-starter-gateway` 依赖
+
+#### 特别注意
+
+- Spring Cloud Gateway 不使用 Web 作为服务器，而是 **使用 WebFlux 作为服务器**，Gateway 项目已经依赖了 `starter-webflux`，所以这里 **千万不要依赖 starter-web**
+- 由于过滤器等功能依然需要 Servlet 支持，故这里还需要依赖 `javax.servlet:javax.servlet-api`
+
+### Application
+
+```java
+package cn.mirrorming.spring.cloud.gateway;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+public class GatewayApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(GatewayApplication.class, args);
+    }
+}
+
+```
+
+### application.yml
+
+```yaml
+spring:
+  application:
+    # 应用名称
+    name: spring-gateway
+  cloud:
+    # 使用 Naoos 作为服务注册发现
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    # 使用 Sentinel 作为熔断器
+    sentinel:
+      transport:
+        port: 8721
+        dashboard: 127.0.0.1:8080
+    # 路由网关配置
+    gateway:
+      # 设置与服务注册发现组件结合，这样可以采用服务名的路由策略
+      discovery:
+        locator:
+          enabled: true
+      # 配置路由规则
+      routes:
+        # 采用自定义路由 ID（有固定用法，不同的 id 有不同的功能，详见：https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters）
+        - id: NACOS-CONSUMER
+          # 采用 LoadBalanceClient 方式请求，以 lb:// 开头，后面的是注册在 Nacos 上的服务名
+          uri: lb://nacos-consumer
+          # Predicate 翻译过来是“谓词”的意思，必须，主要作用是匹配用户的请求，有很多种用法
+          predicates:
+            # Method 方法谓词，这里是匹配 GET 和 POST 请求
+            - Method=GET,POST
+        - id: NACOS-CONSUMER-FEIGN
+          uri: lb://nacos-consumer-feign
+          predicates:
+            - Method=GET,POST
+
+server:
+  port: 9000
+
+
+# 配置日志级别，方别调试
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+```
+
+**注意：请仔细阅读注释**
+
+### 测试访问
+
+依次运行 Nacos 服务、`ProviderApplication`、`ConsumerApplication`、`ConsumerFeignApplication`、`GatewayApplication`
+
+打开浏览器访问：http://localhost:9000/consumer/echo/app/name 浏览器显示
+
+```html
+Hello Nacos Discovery consumer , From port :8081
+```
+
+
+打开浏览器访问：http://localhost:9000/consumer-feign/echo 浏览器显示
+
+```html
+Hello Nacos Discovery Feign Client , From port :8081
+```
+
+**注意：请求方式是 http://路由网关IP:路由网关Port/服务名/\****
+
+至此说明 Spring Cloud Gateway 的路由功能配置成功
+
+
+
+## 9. 使用路由网关的全局过滤功能
+
+### 概述
+
+全局过滤器作用于所有的路由，不需要单独配置，我们可以用它来实现很多统一化处理的业务需求，比如权限认证，IP 访问限制等等。
+
+**注意：截止博客发表时间 2019 年 01 月 10 日，Spring Cloud Gateway 正式版为 2.0.2 其文档并不完善，并且有些地方还要重新设计，这里仅提供一个基本的案例**
+
+**详见：Spring Cloud Gateway Documentation**
+
+### 声明周期
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/gateway-filter.jpg?raw=true)
+
+Spring Cloud Gateway 基于 Project Reactor 和 WebFlux，采用响应式编程风格，打开它的 Filter 的接口 GlobalFilter 你会发现它只有一个方法 filter。
+
+### 创建全局过滤器
+
+实现 `GlobalFilter`, `Ordered` 接口并在类上增加 `@Component` 注解就可以使用过滤功能了，非常简单方便
+
+```java
+package cn.mirrorming.spring.cloud.gateway.filter;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Maps;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
+import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
+
+import java.util.Map;
+
+/**
+ * @author mirror
+ */
+@Slf4j
+@Component
+public class AuthFilter implements GlobalFilter, Ordered {
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        String token = exchange.getRequest().getQueryParams().getFirst("token");
+
+        if (token == null || token.isEmpty()) {
+            ServerHttpResponse response = exchange.getResponse();
+
+            // 封装错误信息
+            Map<String, Object> responseData = Maps.newHashMap();
+            responseData.put("code", 401);
+            responseData.put("message", "非法请求");
+            responseData.put("cause", "Token is empty");
+
+            try {
+                // 将信息转换为 JSON
+                ObjectMapper objectMapper = new ObjectMapper();
+                byte[] data = objectMapper.writeValueAsBytes(responseData);
+
+                // 输出错误信息到页面
+                DataBuffer buffer = response.bufferFactory().wrap(data);
+                response.setStatusCode(HttpStatus.UNAUTHORIZED);
+                response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
+                return response.writeWith(Mono.just(buffer));
+            } catch (JsonProcessingException e) {
+                log.error("{}", e);
+            }
+        }
+
+        return chain.filter(exchange);
+    }
+
+    @Override
+    public int getOrder() {
+        //顺序，多个filter的时候使用
+        return 0;
+    }
+}
+
+```
+
+### 测试过滤器
+
+浏览器访问：http://localhost:9000/consumer-feign/echo 网页显示
+
+```json
+{"code":401,"cause":"Token is empty","message":"非法请求"}
+```
+
+浏览器访问：http://localhost:9000/consumer-feign/echo?token=233 网页显示
+
+```html
+Hello Nacos Discovery Feign Client , From port :8081
+```
+
+### 附：Spring Cloud Gateway Benchmark
+
+Spring 官方人员提供的网关基准测试报告 [GitHub](https://github.com/spencergibb/spring-cloud-gateway-bench)
+
+| Proxy    | Avg Latency | Avg Req/Sec/Thread |
+| -------- | ----------- | ------------------ |
+| gateway  | 6.61ms      | 3.24k              |
+| linkered | 7.62ms      | 2.82k              |
+| zuul     | 12.56ms     | 2.09k              |
+| none     | 2.09ms      | 11.77k             |
+
+#### 说明
+
+- 这里的 Zuul 为 1.x 版本，是一个基于阻塞 IO 的 API Gateway
+- Zuul 已经发布了 Zuul 2.x，基于 Netty，非阻塞的，支持长连接，但 Spring Cloud 暂时还没有整合计划
+- Linkerd 基于 Scala 实现的、目前市面上仅有的生产级别的 Service Mesh（其他诸如 **Istio、Conduit 暂时还不能用于生产**）。
+
+# Spring Cloud Alibaba 服务配置
+
+## 1. Nacos Config 服务端初始化
+
+### 分布式配置中心
+
+在分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。
+
+### Nacos Config
+
+Nacos 提供用于存储配置和其他元数据的 key/value 存储，为分布式系统中的外部化配置提供服务器端和客户端支持。使用 Spring Cloud Alibaba Nacos Config，您可以在 Nacos Server 集中管理你 Spring Cloud 应用的外部属性配置。
+
+Spring Cloud Alibaba Nacos Config 是 Spring Cloud Config Server 和 Client 的替代方案，客户端和服务器上的概念与 Spring Environment 和 PropertySource 有着一致的抽象，在特殊的 bootstrap 阶段，配置被加载到 Spring 环境中。当应用程序通过部署管道从开发到测试再到生产时，您可以管理这些环境之间的配置，并确保应用程序具有迁移时需要运行的所有内容。
+
+### 创建配置文件
+
+需要在 Nacos Server 中创建配置文件，我们依然采用 YAML 的方式部署配置文件，操作流程如下：
+
+- 浏览器打开 http://localhost:8848/nacos ，访问 Nacos Server
+
+- 新建配置文件，此处以 **服务消费者Feign**项目为例
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-config.png?raw=true)
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-config2.png?raw=true)
+
+**注意：Data ID 的默认扩展名为 .properties ，希望使用 YAML 配置，此处必须指明是 .yaml**
+
+- 发布成功后在 “配置列表” 一栏即可看到刚才创建的配置项
+
+## 2. Nacos Config 客户端的使用
+
+### POM
+
+此处以**服务提供者**项目为例
+
+在 `pom.xml` 中增加 `org.springframework.cloud:spring-cloud-starter-alibaba-nacos-config` 依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+</dependency>
+```
+
+完整的 `pom.xml` 如下：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.mirrorming</groupId>
+        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>hello-spring-cloud-alibaba-provider</artifactId>
+    <packaging>jar</packaging>
+
+    <name>hello-spring-cloud-alibaba-provider</name>
+    <url>http://www.mirrorming.cn</url>
+    <inceptionYear>2019-Now</inceptionYear>
+
+    <dependencies>
+        <!-- Spring Boot Begin -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- Spring Boot End -->
+
+        <!-- Spring Cloud Begin -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!-- Spring Cloud End -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>cn.mirrorming.hello.spring.cloud.alibaba.provider.ProviderApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+### bootstrap.properties
+
+创建名为 `bootstrap.properties` 的配置文件并删除之前创建的 `application.yml` 配置文件
+
+```properties
+# 这里的应用名对应 Nacos Config 中的 Data ID，实际应用名称以配置中心的配置为准
+spring.application.name=provider-config
+# 指定查找名为 nacos-provider-config.yaml 的配置文件
+spring.cloud.nacos.config.file-extension=yaml
+# Nacos Server 的地址
+spring.cloud.nacos.config.server-addr=127.0.0.1:8848
+```
+
+**注意：Spring Boot 配置文件的加载顺序，依次为 bootstrap.properties -> bootstrap.yml -> application.properties -> application.yml ，其中 bootstrap.properties 配置为最高优先级**
+
+### 启动应用程序
+
+启动应用后我们可以通过日志看到，已经成功加载到了配置文件
+
+```
+INFO 676 --- [           main] o.s.c.a.n.c.NacosPropertySourceBuilder   : Loading nacos data, dataId: 'provider-config.yaml', group: 'DEFAULT_GROUP'
+```
+
+### 配置的动态更新
+
+Nacos Config 也支持配置的动态更新，操作流程如下：
+
+- 修改服务端配置，增加一个 `user.name` 的属性
+
+- 在Controller中测试配置更新效果
+
+```java
+@RestController
+public class TestNacosConfigController {
+    /**
+     * 注入配置文件上下文
+     */
+    @Autowired
+    private ConfigurableApplicationContext applicationContext;
+    /**
+     * 从上下文中读取配置
+     */
+    @GetMapping(value = "/hi")
+    public String getNameFromNacosConfig() {
+        return "Hello " + applicationContext.getEnvironment().getProperty("user.name");
+    }
+}
+```
+
+- 通过浏览器访问该接口，浏览器显示
+
+```html
+Hello mirror
+```
+
+- 修改服务端配置文件
+
+此时观察控制台日志，你会发现我们已经成功刷新了配置
+
+![autoupdate](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-config-autoupdate.png?raw=true)
+
+- 刷新浏览器，浏览器显示
+
+```html
+Hello mirrorming
+```
+
+**注：可以使用 spring.cloud.nacos.config.refresh.enabled=false 来关闭动态刷新**
+

@@ -10,19 +10,15 @@
         <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
     </parent>
 
-    <artifactId>hello-spring-cloud-alibaba-consumer</artifactId>
+    <artifactId>hello-spring-cloud-alibaba-gateway</artifactId>
     <packaging>jar</packaging>
 
-    <name>hello-spring-cloud-alibaba-consumer</name>
+    <name>hello-spring-cloud-alibaba-gateway</name>
     <url>http://www.mirrorming.cn</url>
     <inceptionYear>2019-Now</inceptionYear>
 
     <dependencies>
         <!-- Spring Boot Begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -39,12 +35,32 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!-- sentinel -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
         <!-- Spring Cloud End -->
+
+        <!-- Commons Begin -->
+        <!--需要过滤器-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+        </dependency>
+        <!-- Commons Begin -->
     </dependencies>
 
     <build>
@@ -53,7 +69,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.mirrorming.spring.cloud.alibaba.consumer.ConsumerApplication</mainClass>
+                    <mainClass>cn.mirrorming.spring.cloud.gateway.GatewayApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,0 +1,43 @@
+spring:
+  application:
+    # 应用名称
+    name: spring-gateway
+  cloud:
+    # 使用 Naoos 作为服务注册发现
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    # 使用 Sentinel 作为熔断器
+    sentinel:
+      transport:
+        port: 8721
+        dashboard: 127.0.0.1:8080
+    # 路由网关配置
+    gateway:
+      # 设置与服务注册发现组件结合，这样可以采用服务名的路由策略
+      discovery:
+        locator:
+          enabled: true
+      # 配置路由规则
+      routes:
+        # 采用自定义路由 ID（有固定用法，不同的 id 有不同的功能，详见：https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters）
+        - id: NACOS-CONSUMER
+          # 采用 LoadBalanceClient 方式请求，以 lb:// 开头，后面的是注册在 Nacos 上的服务名
+          uri: lb://nacos-consumer
+          # Predicate 翻译过来是“谓词”的意思，必须，主要作用是匹配用户的请求，有很多种用法
+          predicates:
+            # Method 方法谓词，这里是匹配 GET 和 POST 请求
+            - Method=GET,POST
+        - id: NACOS-CONSUMER-FEIGN
+          uri: lb://nacos-consumer-feign
+          predicates:
+            - Method=GET,POST
+
+server:
+  port: 9000
+
+
+# 配置日志级别，方别调试
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
