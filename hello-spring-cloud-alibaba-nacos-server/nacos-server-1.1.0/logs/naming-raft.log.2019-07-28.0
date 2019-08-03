@@ -1,0 +1,20 @@
+2019-07-28 10:12:05,223 INFO initializing Raft sub-system
+
+2019-07-28 10:12:05,224 INFO raft notifier started
+
+2019-07-28 10:12:05,224 INFO finish loading all datums, size: 0 cost 1 ms.
+
+2019-07-28 10:12:05,226 INFO cache loaded, datum count: 0, current term: 0
+
+2019-07-28 10:12:05,226 INFO finish to load data from disk, cost: 3 ms.
+
+2019-07-28 10:12:05,228 INFO timer started: leader timeout ms: 15000, heart-beat timeout ms: 5000
+
+2019-07-28 10:12:05,150 INFO server list is updated, new: 1 servers: [{"adWeight":0,"alive":false,"ip":"169.254.45.17","key":"169.254.45.17:0","lastRefTime":0,"servePort":0,"site":"unknown","weight":1}]
+
+2019-07-28 10:12:05,236 INFO raft peers changed: [{"adWeight":0,"alive":false,"ip":"169.254.45.17","key":"169.254.45.17:0","lastRefTime":0,"lastRefTimeStr":"","servePort":0,"site":"unknown","weight":1}]
+
+2019-07-28 10:12:05,271 INFO add listener: com.alibaba.nacos.naming.domains.meta.
+
+2019-07-28 10:12:06,596 INFO add listener: com.alibaba.nacos.naming.domains.meta.00-00---000-NACOS_SWITCH_DOMAIN-000---00-00
+

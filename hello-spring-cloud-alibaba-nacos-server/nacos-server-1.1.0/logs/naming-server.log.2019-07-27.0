@@ -1,0 +1,1236 @@
+2019-07-27 20:02:36,406 INFO listen for service meta change
+
+2019-07-27 20:02:39,945 INFO [SERVER-INIT] got port: 8848
+
+2019-07-27 20:02:39,945 INFO [SERVER-INIT] got path: /nacos
+
+2019-07-27 20:02:41,282 INFO receive config info: unknown#192.168.2.113:8848#1564228961282#6
+
+
+2019-07-27 20:02:41,282 INFO [NACOS-DISTRO] healthy server list changed, disable health check for 60000 ms from now on, old: [], new: [{"adWeight":0,"alive":true,"ip":"192.168.2.113","key":"192.168.2.113:8848","lastRefTime":1564228961282,"lastRefTimeStr":"2019-07-27 20:02:41","servePort":8848,"site":"unknown","weight":6}]
+
+2019-07-27 20:02:56,285 INFO receive config info: unknown#192.168.2.113:8848#1564228976285#6
+
+
+2019-07-27 20:03:09,126 INFO [HEALTH-CHECK] health check is false
+
+2019-07-27 20:03:11,287 INFO receive config info: unknown#192.168.2.113:8848#1564228991287#6
+
+
+2019-07-27 20:03:26,288 INFO receive config info: unknown#192.168.2.113:8848#1564229006288#6
+
+
+2019-07-27 20:03:41,290 INFO receive config info: unknown#192.168.2.113:8848#1564229021290#6
+
+
+2019-07-27 20:03:41,290 INFO [NACOS-DISTRO] distro threshold restored and stable now, enable health check. current ratio: 1.0
+
+2019-07-27 20:03:56,292 INFO receive config info: unknown#192.168.2.113:8848#1564229036292#6
+
+
+2019-07-27 20:04:11,294 INFO receive config info: unknown#192.168.2.113:8848#1564229051294#6
+
+
+2019-07-27 20:04:26,295 INFO receive config info: unknown#192.168.2.113:8848#1564229066295#6
+
+
+2019-07-27 20:04:41,297 INFO receive config info: unknown#192.168.2.113:8848#1564229081297#6
+
+
+2019-07-27 20:04:56,298 INFO receive config info: unknown#192.168.2.113:8848#1564229096298#6
+
+
+2019-07-27 20:05:11,300 INFO receive config info: unknown#192.168.2.113:8848#1564229111300#6
+
+
+2019-07-27 20:05:26,300 INFO receive config info: unknown#192.168.2.113:8848#1564229126300#6
+
+
+2019-07-27 20:05:41,301 INFO receive config info: unknown#192.168.2.113:8848#1564229141301#6
+
+
+2019-07-27 20:05:56,304 INFO receive config info: unknown#192.168.2.113:8848#1564229156304#6
+
+
+2019-07-27 20:06:11,305 INFO receive config info: unknown#192.168.2.113:8848#1564229171305#6
+
+
+2019-07-27 20:06:26,307 INFO receive config info: unknown#192.168.2.113:8848#1564229186307#6
+
+
+2019-07-27 20:06:41,309 INFO receive config info: unknown#192.168.2.113:8848#1564229201309#6
+
+
+2019-07-27 20:06:56,310 INFO receive config info: unknown#192.168.2.113:8848#1564229216310#6
+
+
+2019-07-27 20:07:11,312 INFO receive config info: unknown#192.168.2.113:8848#1564229231312#6
+
+
+2019-07-27 20:07:26,313 INFO receive config info: unknown#192.168.2.113:8848#1564229246313#6
+
+
+2019-07-27 20:07:41,314 INFO receive config info: unknown#192.168.2.113:8848#1564229261314#6
+
+
+2019-07-27 20:07:56,315 INFO receive config info: unknown#192.168.2.113:8848#1564229276315#6
+
+
+2019-07-27 20:08:09,127 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:08:11,316 INFO receive config info: unknown#192.168.2.113:8848#1564229291316#6
+
+
+2019-07-27 20:08:26,318 INFO receive config info: unknown#192.168.2.113:8848#1564229306318#6
+
+
+2019-07-27 20:08:41,320 INFO receive config info: unknown#192.168.2.113:8848#1564229321320#6
+
+
+2019-07-27 20:08:56,321 INFO receive config info: unknown#192.168.2.113:8848#1564229336321#6
+
+
+2019-07-27 20:09:11,323 INFO receive config info: unknown#192.168.2.113:8848#1564229351323#6
+
+
+2019-07-27 20:09:26,324 INFO receive config info: unknown#192.168.2.113:8848#1564229366324#6
+
+
+2019-07-27 20:09:41,325 INFO receive config info: unknown#192.168.2.113:8848#1564229381325#6
+
+
+2019-07-27 20:09:56,328 INFO receive config info: unknown#192.168.2.113:8848#1564229396328#6
+
+
+2019-07-27 20:10:11,329 INFO receive config info: unknown#192.168.2.113:8848#1564229411329#6
+
+
+2019-07-27 20:10:26,330 INFO receive config info: unknown#192.168.2.113:8848#1564229426330#6
+
+
+2019-07-27 20:10:41,332 INFO receive config info: unknown#192.168.2.113:8848#1564229441332#6
+
+
+2019-07-27 20:10:56,333 INFO receive config info: unknown#192.168.2.113:8848#1564229456333#6
+
+
+2019-07-27 20:11:11,335 INFO receive config info: unknown#192.168.2.113:8848#1564229471335#6
+
+
+2019-07-27 20:11:26,337 INFO receive config info: unknown#192.168.2.113:8848#1564229486337#6
+
+
+2019-07-27 20:11:41,338 INFO receive config info: unknown#192.168.2.113:8848#1564229501338#6
+
+
+2019-07-27 20:11:56,339 INFO receive config info: unknown#192.168.2.113:8848#1564229516339#6
+
+
+2019-07-27 20:12:11,341 INFO receive config info: unknown#192.168.2.113:8848#1564229531341#6
+
+
+2019-07-27 20:12:26,342 INFO receive config info: unknown#192.168.2.113:8848#1564229546342#6
+
+
+2019-07-27 20:12:41,344 INFO receive config info: unknown#192.168.2.113:8848#1564229561344#6
+
+
+2019-07-27 20:12:56,345 INFO receive config info: unknown#192.168.2.113:8848#1564229576345#6
+
+
+2019-07-27 20:13:09,128 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:13:11,346 INFO receive config info: unknown#192.168.2.113:8848#1564229591346#6
+
+
+2019-07-27 20:13:26,348 INFO receive config info: unknown#192.168.2.113:8848#1564229606348#6
+
+
+2019-07-27 20:13:41,349 INFO receive config info: unknown#192.168.2.113:8848#1564229621349#6
+
+
+2019-07-27 20:13:56,351 INFO receive config info: unknown#192.168.2.113:8848#1564229636351#6
+
+
+2019-07-27 20:14:11,353 INFO receive config info: unknown#192.168.2.113:8848#1564229651353#6
+
+
+2019-07-27 20:14:26,355 INFO receive config info: unknown#192.168.2.113:8848#1564229666355#6
+
+
+2019-07-27 20:14:41,356 INFO receive config info: unknown#192.168.2.113:8848#1564229681356#6
+
+
+2019-07-27 20:14:56,357 INFO receive config info: unknown#192.168.2.113:8848#1564229696357#6
+
+
+2019-07-27 20:15:11,358 INFO receive config info: unknown#192.168.2.113:8848#1564229711358#6
+
+
+2019-07-27 20:15:26,360 INFO receive config info: unknown#192.168.2.113:8848#1564229726360#6
+
+
+2019-07-27 20:15:41,361 INFO receive config info: unknown#192.168.2.113:8848#1564229741361#6
+
+
+2019-07-27 20:15:56,363 INFO receive config info: unknown#192.168.2.113:8848#1564229756363#6
+
+
+2019-07-27 20:16:11,364 INFO receive config info: unknown#192.168.2.113:8848#1564229771364#6
+
+
+2019-07-27 20:16:26,366 INFO receive config info: unknown#192.168.2.113:8848#1564229786366#6
+
+
+2019-07-27 20:16:41,368 INFO receive config info: unknown#192.168.2.113:8848#1564229801368#6
+
+
+2019-07-27 20:16:56,369 INFO receive config info: unknown#192.168.2.113:8848#1564229816369#6
+
+
+2019-07-27 20:17:11,370 INFO receive config info: unknown#192.168.2.113:8848#1564229831370#6
+
+
+2019-07-27 20:17:26,371 INFO receive config info: unknown#192.168.2.113:8848#1564229846371#6
+
+
+2019-07-27 20:17:41,373 INFO receive config info: unknown#192.168.2.113:8848#1564229861373#6
+
+
+2019-07-27 20:17:56,375 INFO receive config info: unknown#192.168.2.113:8848#1564229876375#6
+
+
+2019-07-27 20:18:09,130 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:18:11,376 INFO receive config info: unknown#192.168.2.113:8848#1564229891376#6
+
+
+2019-07-27 20:18:26,378 INFO receive config info: unknown#192.168.2.113:8848#1564229906378#6
+
+
+2019-07-27 20:18:41,379 INFO receive config info: unknown#192.168.2.113:8848#1564229921379#6
+
+
+2019-07-27 20:18:56,380 INFO receive config info: unknown#192.168.2.113:8848#1564229936380#6
+
+
+2019-07-27 20:19:11,381 INFO receive config info: unknown#192.168.2.113:8848#1564229951381#6
+
+
+2019-07-27 20:19:26,387 INFO receive config info: unknown#192.168.2.113:8848#1564229966387#6
+
+
+2019-07-27 20:19:41,389 INFO receive config info: unknown#192.168.2.113:8848#1564229981389#6
+
+
+2019-07-27 20:19:56,390 INFO receive config info: unknown#192.168.2.113:8848#1564229996390#6
+
+
+2019-07-27 20:20:11,392 INFO receive config info: unknown#192.168.2.113:8848#1564230011392#6
+
+
+2019-07-27 20:20:26,394 INFO receive config info: unknown#192.168.2.113:8848#1564230026394#6
+
+
+2019-07-27 20:20:41,395 INFO receive config info: unknown#192.168.2.113:8848#1564230041395#6
+
+
+2019-07-27 20:20:56,397 INFO receive config info: unknown#192.168.2.113:8848#1564230056397#6
+
+
+2019-07-27 20:21:11,399 INFO receive config info: unknown#192.168.2.113:8848#1564230071399#6
+
+
+2019-07-27 20:21:26,400 INFO receive config info: unknown#192.168.2.113:8848#1564230086400#6
+
+
+2019-07-27 20:21:41,402 INFO receive config info: unknown#192.168.2.113:8848#1564230101402#6
+
+
+2019-07-27 20:21:56,404 INFO receive config info: unknown#192.168.2.113:8848#1564230116404#6
+
+
+2019-07-27 20:22:11,406 INFO receive config info: unknown#192.168.2.113:8848#1564230131406#6
+
+
+2019-07-27 20:22:26,407 INFO receive config info: unknown#192.168.2.113:8848#1564230146407#6
+
+
+2019-07-27 20:22:41,409 INFO receive config info: unknown#192.168.2.113:8848#1564230161409#6
+
+
+2019-07-27 20:22:56,411 INFO receive config info: unknown#192.168.2.113:8848#1564230176411#6
+
+
+2019-07-27 20:23:09,132 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:23:11,411 INFO receive config info: unknown#192.168.2.113:8848#1564230191411#6
+
+
+2019-07-27 20:23:26,413 INFO receive config info: unknown#192.168.2.113:8848#1564230206413#6
+
+
+2019-07-27 20:23:41,415 INFO receive config info: unknown#192.168.2.113:8848#1564230221415#6
+
+
+2019-07-27 20:23:56,416 INFO receive config info: unknown#192.168.2.113:8848#1564230236416#6
+
+
+2019-07-27 20:24:11,418 INFO receive config info: unknown#192.168.2.113:8848#1564230251418#6
+
+
+2019-07-27 20:24:26,419 INFO receive config info: unknown#192.168.2.113:8848#1564230266419#6
+
+
+2019-07-27 20:24:41,420 INFO receive config info: unknown#192.168.2.113:8848#1564230281420#6
+
+
+2019-07-27 20:24:56,422 INFO receive config info: unknown#192.168.2.113:8848#1564230296422#6
+
+
+2019-07-27 20:25:11,424 INFO receive config info: unknown#192.168.2.113:8848#1564230311424#6
+
+
+2019-07-27 20:25:26,425 INFO receive config info: unknown#192.168.2.113:8848#1564230326425#6
+
+
+2019-07-27 20:25:41,426 INFO receive config info: unknown#192.168.2.113:8848#1564230341426#6
+
+
+2019-07-27 20:25:56,427 INFO receive config info: unknown#192.168.2.113:8848#1564230356427#6
+
+
+2019-07-27 20:26:11,428 INFO receive config info: unknown#192.168.2.113:8848#1564230371428#6
+
+
+2019-07-27 20:26:26,430 INFO receive config info: unknown#192.168.2.113:8848#1564230386430#6
+
+
+2019-07-27 20:26:41,431 INFO receive config info: unknown#192.168.2.113:8848#1564230401431#6
+
+
+2019-07-27 20:26:56,433 INFO receive config info: unknown#192.168.2.113:8848#1564230416433#6
+
+
+2019-07-27 20:27:11,435 INFO receive config info: unknown#192.168.2.113:8848#1564230431435#6
+
+
+2019-07-27 20:27:26,436 INFO receive config info: unknown#192.168.2.113:8848#1564230446436#6
+
+
+2019-07-27 20:27:41,438 INFO receive config info: unknown#192.168.2.113:8848#1564230461438#6
+
+
+2019-07-27 20:27:56,439 INFO receive config info: unknown#192.168.2.113:8848#1564230476439#6
+
+
+2019-07-27 20:28:09,133 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:28:11,440 INFO receive config info: unknown#192.168.2.113:8848#1564230491440#6
+
+
+2019-07-27 20:28:26,442 INFO receive config info: unknown#192.168.2.113:8848#1564230506442#6
+
+
+2019-07-27 20:28:41,444 INFO receive config info: unknown#192.168.2.113:8848#1564230521444#6
+
+
+2019-07-27 20:28:56,444 INFO receive config info: unknown#192.168.2.113:8848#1564230536444#6
+
+
+2019-07-27 20:29:11,446 INFO receive config info: unknown#192.168.2.113:8848#1564230551446#6
+
+
+2019-07-27 20:29:26,448 INFO receive config info: unknown#192.168.2.113:8848#1564230566448#6
+
+
+2019-07-27 20:29:41,449 INFO receive config info: unknown#192.168.2.113:8848#1564230581449#6
+
+
+2019-07-27 20:29:56,451 INFO receive config info: unknown#192.168.2.113:8848#1564230596451#6
+
+
+2019-07-27 20:30:11,452 INFO receive config info: unknown#192.168.2.113:8848#1564230611452#6
+
+
+2019-07-27 20:30:26,452 INFO receive config info: unknown#192.168.2.113:8848#1564230626452#6
+
+
+2019-07-27 20:30:41,454 INFO receive config info: unknown#192.168.2.113:8848#1564230641454#6
+
+
+2019-07-27 20:30:56,455 INFO receive config info: unknown#192.168.2.113:8848#1564230656455#6
+
+
+2019-07-27 20:31:11,456 INFO receive config info: unknown#192.168.2.113:8848#1564230671456#6
+
+
+2019-07-27 20:31:26,457 INFO receive config info: unknown#192.168.2.113:8848#1564230686457#6
+
+
+2019-07-27 20:31:41,458 INFO receive config info: unknown#192.168.2.113:8848#1564230701458#6
+
+
+2019-07-27 20:31:56,459 INFO receive config info: unknown#192.168.2.113:8848#1564230716459#6
+
+
+2019-07-27 20:32:11,461 INFO receive config info: unknown#192.168.2.113:8848#1564230731461#6
+
+
+2019-07-27 20:32:26,462 INFO receive config info: unknown#192.168.2.113:8848#1564230746462#6
+
+
+2019-07-27 20:32:41,463 INFO receive config info: unknown#192.168.2.113:8848#1564230761463#6
+
+
+2019-07-27 20:32:56,465 INFO receive config info: unknown#192.168.2.113:8848#1564230776465#6
+
+
+2019-07-27 20:33:09,135 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:33:11,466 INFO receive config info: unknown#192.168.2.113:8848#1564230791466#6
+
+
+2019-07-27 20:33:26,467 INFO receive config info: unknown#192.168.2.113:8848#1564230806467#6
+
+
+2019-07-27 20:33:41,468 INFO receive config info: unknown#192.168.2.113:8848#1564230821468#6
+
+
+2019-07-27 20:33:56,470 INFO receive config info: unknown#192.168.2.113:8848#1564230836470#6
+
+
+2019-07-27 20:34:11,471 INFO receive config info: unknown#192.168.2.113:8848#1564230851471#6
+
+
+2019-07-27 20:34:26,472 INFO receive config info: unknown#192.168.2.113:8848#1564230866472#6
+
+
+2019-07-27 20:34:41,474 INFO receive config info: unknown#192.168.2.113:8848#1564230881474#6
+
+
+2019-07-27 20:34:56,476 INFO receive config info: unknown#192.168.2.113:8848#1564230896476#6
+
+
+2019-07-27 20:35:11,477 INFO receive config info: unknown#192.168.2.113:8848#1564230911477#6
+
+
+2019-07-27 20:35:26,478 INFO receive config info: unknown#192.168.2.113:8848#1564230926478#6
+
+
+2019-07-27 20:35:41,480 INFO receive config info: unknown#192.168.2.113:8848#1564230941480#6
+
+
+2019-07-27 20:35:56,481 INFO receive config info: unknown#192.168.2.113:8848#1564230956481#6
+
+
+2019-07-27 20:36:11,483 INFO receive config info: unknown#192.168.2.113:8848#1564230971483#6
+
+
+2019-07-27 20:36:26,485 INFO receive config info: unknown#192.168.2.113:8848#1564230986485#6
+
+
+2019-07-27 20:36:41,486 INFO receive config info: unknown#192.168.2.113:8848#1564231001486#6
+
+
+2019-07-27 20:36:56,487 INFO receive config info: unknown#192.168.2.113:8848#1564231016487#6
+
+
+2019-07-27 20:37:11,489 INFO receive config info: unknown#192.168.2.113:8848#1564231031489#6
+
+
+2019-07-27 20:37:26,491 INFO receive config info: unknown#192.168.2.113:8848#1564231046491#6
+
+
+2019-07-27 20:37:41,491 INFO receive config info: unknown#192.168.2.113:8848#1564231061491#6
+
+
+2019-07-27 20:37:56,493 INFO receive config info: unknown#192.168.2.113:8848#1564231076493#6
+
+
+2019-07-27 20:38:09,136 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:38:11,494 INFO receive config info: unknown#192.168.2.113:8848#1564231091494#6
+
+
+2019-07-27 20:38:26,495 INFO receive config info: unknown#192.168.2.113:8848#1564231106495#6
+
+
+2019-07-27 20:38:41,496 INFO receive config info: unknown#192.168.2.113:8848#1564231121496#6
+
+
+2019-07-27 20:38:56,497 INFO receive config info: unknown#192.168.2.113:8848#1564231136497#6
+
+
+2019-07-27 20:39:11,499 INFO receive config info: unknown#192.168.2.113:8848#1564231151499#6
+
+
+2019-07-27 20:39:26,500 INFO receive config info: unknown#192.168.2.113:8848#1564231166500#6
+
+
+2019-07-27 20:39:41,502 INFO receive config info: unknown#192.168.2.113:8848#1564231181502#6
+
+
+2019-07-27 20:39:56,503 INFO receive config info: unknown#192.168.2.113:8848#1564231196503#6
+
+
+2019-07-27 20:40:11,505 INFO receive config info: unknown#192.168.2.113:8848#1564231211505#6
+
+
+2019-07-27 20:40:26,507 INFO receive config info: unknown#192.168.2.113:8848#1564231226507#6
+
+
+2019-07-27 20:40:41,508 INFO receive config info: unknown#192.168.2.113:8848#1564231241508#6
+
+
+2019-07-27 20:40:56,509 INFO receive config info: unknown#192.168.2.113:8848#1564231256509#6
+
+
+2019-07-27 20:41:11,509 INFO receive config info: unknown#192.168.2.113:8848#1564231271509#6
+
+
+2019-07-27 20:41:26,511 INFO receive config info: unknown#192.168.2.113:8848#1564231286511#6
+
+
+2019-07-27 20:41:41,512 INFO receive config info: unknown#192.168.2.113:8848#1564231301512#6
+
+
+2019-07-27 20:41:56,513 INFO receive config info: unknown#192.168.2.113:8848#1564231316513#6
+
+
+2019-07-27 20:42:11,514 INFO receive config info: unknown#192.168.2.113:8848#1564231331514#6
+
+
+2019-07-27 20:42:26,516 INFO receive config info: unknown#192.168.2.113:8848#1564231346516#6
+
+
+2019-07-27 20:42:41,517 INFO receive config info: unknown#192.168.2.113:8848#1564231361517#6
+
+
+2019-07-27 20:42:56,519 INFO receive config info: unknown#192.168.2.113:8848#1564231376519#6
+
+
+2019-07-27 20:43:09,138 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:43:11,520 INFO receive config info: unknown#192.168.2.113:8848#1564231391520#6
+
+
+2019-07-27 20:43:26,520 INFO receive config info: unknown#192.168.2.113:8848#1564231406520#6
+
+
+2019-07-27 20:43:41,521 INFO receive config info: unknown#192.168.2.113:8848#1564231421521#6
+
+
+2019-07-27 20:43:56,522 INFO receive config info: unknown#192.168.2.113:8848#1564231436522#6
+
+
+2019-07-27 20:44:11,523 INFO receive config info: unknown#192.168.2.113:8848#1564231451523#6
+
+
+2019-07-27 20:44:26,525 INFO receive config info: unknown#192.168.2.113:8848#1564231466525#6
+
+
+2019-07-27 20:44:41,525 INFO receive config info: unknown#192.168.2.113:8848#1564231481525#6
+
+
+2019-07-27 20:44:56,527 INFO receive config info: unknown#192.168.2.113:8848#1564231496527#6
+
+
+2019-07-27 20:45:11,528 INFO receive config info: unknown#192.168.2.113:8848#1564231511528#6
+
+
+2019-07-27 20:45:26,530 INFO receive config info: unknown#192.168.2.113:8848#1564231526530#6
+
+
+2019-07-27 20:45:41,531 INFO receive config info: unknown#192.168.2.113:8848#1564231541531#6
+
+
+2019-07-27 20:45:56,533 INFO receive config info: unknown#192.168.2.113:8848#1564231556533#6
+
+
+2019-07-27 20:46:11,534 INFO receive config info: unknown#192.168.2.113:8848#1564231571534#6
+
+
+2019-07-27 20:46:26,535 INFO receive config info: unknown#192.168.2.113:8848#1564231586535#6
+
+
+2019-07-27 20:46:41,537 INFO receive config info: unknown#192.168.2.113:8848#1564231601537#6
+
+
+2019-07-27 20:46:56,539 INFO receive config info: unknown#192.168.2.113:8848#1564231616539#6
+
+
+2019-07-27 20:47:11,540 INFO receive config info: unknown#192.168.2.113:8848#1564231631540#6
+
+
+2019-07-27 20:47:26,542 INFO receive config info: unknown#192.168.2.113:8848#1564231646542#6
+
+
+2019-07-27 20:47:41,543 INFO receive config info: unknown#192.168.2.113:8848#1564231661543#6
+
+
+2019-07-27 20:47:56,544 INFO receive config info: unknown#192.168.2.113:8848#1564231676544#6
+
+
+2019-07-27 20:48:09,140 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:48:11,546 INFO receive config info: unknown#192.168.2.113:8848#1564231691546#6
+
+
+2019-07-27 20:48:26,548 INFO receive config info: unknown#192.168.2.113:8848#1564231706548#6
+
+
+2019-07-27 20:48:41,550 INFO receive config info: unknown#192.168.2.113:8848#1564231721550#6
+
+
+2019-07-27 20:48:56,551 INFO receive config info: unknown#192.168.2.113:8848#1564231736551#6
+
+
+2019-07-27 20:49:11,553 INFO receive config info: unknown#192.168.2.113:8848#1564231751553#6
+
+
+2019-07-27 20:49:26,554 INFO receive config info: unknown#192.168.2.113:8848#1564231766554#6
+
+
+2019-07-27 20:49:41,556 INFO receive config info: unknown#192.168.2.113:8848#1564231781556#6
+
+
+2019-07-27 20:49:56,558 INFO receive config info: unknown#192.168.2.113:8848#1564231796558#6
+
+
+2019-07-27 20:50:11,559 INFO receive config info: unknown#192.168.2.113:8848#1564231811559#6
+
+
+2019-07-27 20:50:26,561 INFO receive config info: unknown#192.168.2.113:8848#1564231826561#6
+
+
+2019-07-27 20:50:41,562 INFO receive config info: unknown#192.168.2.113:8848#1564231841562#6
+
+
+2019-07-27 20:50:56,563 INFO receive config info: unknown#192.168.2.113:8848#1564231856563#6
+
+
+2019-07-27 20:51:11,565 INFO receive config info: unknown#192.168.2.113:8848#1564231871565#6
+
+
+2019-07-27 20:51:26,567 INFO receive config info: unknown#192.168.2.113:8848#1564231886567#6
+
+
+2019-07-27 20:51:41,568 INFO receive config info: unknown#192.168.2.113:8848#1564231901568#6
+
+
+2019-07-27 20:51:56,569 INFO receive config info: unknown#192.168.2.113:8848#1564231916569#6
+
+
+2019-07-27 20:52:11,570 INFO receive config info: unknown#192.168.2.113:8848#1564231931570#6
+
+
+2019-07-27 20:52:26,571 INFO receive config info: unknown#192.168.2.113:8848#1564231946571#6
+
+
+2019-07-27 20:52:41,572 INFO receive config info: unknown#192.168.2.113:8848#1564231961572#6
+
+
+2019-07-27 20:52:56,574 INFO receive config info: unknown#192.168.2.113:8848#1564231976574#6
+
+
+2019-07-27 20:53:09,141 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 20:53:11,575 INFO receive config info: unknown#192.168.2.113:8848#1564231991575#6
+
+
+2019-07-27 20:53:26,576 INFO receive config info: unknown#192.168.2.113:8848#1564232006576#6
+
+
+2019-07-27 20:53:41,578 INFO receive config info: unknown#192.168.2.113:8848#1564232021578#6
+
+
+2019-07-27 20:53:56,579 INFO receive config info: unknown#192.168.2.113:8848#1564232036579#6
+
+
+2019-07-27 20:54:11,581 INFO receive config info: unknown#192.168.2.113:8848#1564232051581#6
+
+
+2019-07-27 20:54:26,582 INFO receive config info: unknown#192.168.2.113:8848#1564232066582#6
+
+
+2019-07-27 20:54:41,583 INFO receive config info: unknown#192.168.2.113:8848#1564232081583#6
+
+
+2019-07-27 20:54:56,584 INFO receive config info: unknown#192.168.2.113:8848#1564232096584#6
+
+
+2019-07-27 20:55:11,585 INFO receive config info: unknown#192.168.2.113:8848#1564232111585#6
+
+
+2019-07-27 20:55:26,586 INFO receive config info: unknown#192.168.2.113:8848#1564232126586#6
+
+
+2019-07-27 20:55:41,588 INFO receive config info: unknown#192.168.2.113:8848#1564232141588#6
+
+
+2019-07-27 20:55:56,590 INFO receive config info: unknown#192.168.2.113:8848#1564232156590#6
+
+
+2019-07-27 22:14:04,151 INFO listen for service meta change
+
+2019-07-27 22:14:07,484 INFO [SERVER-INIT] got port: 8848
+
+2019-07-27 22:14:07,484 INFO [SERVER-INIT] got path: /nacos
+
+2019-07-27 22:14:09,033 INFO receive config info: unknown#192.168.2.113:8848#1564236849033#6
+
+
+2019-07-27 22:14:09,034 INFO [NACOS-DISTRO] healthy server list changed, disable health check for 60000 ms from now on, old: [], new: [{"adWeight":0,"alive":true,"ip":"192.168.2.113","key":"192.168.2.113:8848","lastRefTime":1564236849033,"lastRefTimeStr":"2019-07-27 22:14:09","servePort":8848,"site":"unknown","weight":6}]
+
+2019-07-27 22:14:24,036 INFO receive config info: unknown#192.168.2.113:8848#1564236864036#6
+
+
+2019-07-27 22:14:29,613 INFO creating empty service public:DEFAULT_GROUP@@nacos-provider
+
+2019-07-27 22:14:29,627 WARN cluster: DEFAULT not found, ip: {"app":"DEFAULT","clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceId":"192.168.2.113#8081#DEFAULT#DEFAULT_GROUP@@nacos-provider","ip":"192.168.2.113","ipDeleteTimeout":30000,"lastBeat":1564236869606,"marked":false,"metadata":{},"port":8081,"serviceName":"DEFAULT_GROUP@@nacos-provider","tenant":"","weight":1}, will create new cluster with default configuration.
+
+2019-07-27 22:14:29,633 INFO [NACOS-RAFT] datum is changed, key: com.alibaba.nacos.naming.iplist.ephemeral.public##DEFAULT_GROUP@@nacos-provider, value: {"cachedChecksum":"","instanceList":[{"app":"DEFAULT","clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceId":"192.168.2.113#8081#DEFAULT#DEFAULT_GROUP@@nacos-provider","ip":"192.168.2.113","ipDeleteTimeout":30000,"lastBeat":1564236869606,"marked":false,"metadata":{},"port":8081,"serviceName":"DEFAULT_GROUP@@nacos-provider","tenant":"","weight":1}]}
+
+2019-07-27 22:14:36,623 INFO [HEALTH-CHECK] health check is false
+
+2019-07-27 22:14:39,038 INFO receive config info: unknown#192.168.2.113:8848#1564236879038#6
+
+
+2019-07-27 22:14:54,040 INFO receive config info: unknown#192.168.2.113:8848#1564236894040#6
+
+
+2019-07-27 22:15:09,041 INFO receive config info: unknown#192.168.2.113:8848#1564236909041#6
+
+
+2019-07-27 22:15:09,041 INFO [NACOS-DISTRO] distro threshold restored and stable now, enable health check. current ratio: 1.0
+
+2019-07-27 22:15:24,043 INFO receive config info: unknown#192.168.2.113:8848#1564236924043#6
+
+
+2019-07-27 22:15:39,044 INFO receive config info: unknown#192.168.2.113:8848#1564236939044#6
+
+
+2019-07-27 22:15:40,385 INFO creating empty service public:DEFAULT_GROUP@@provider
+
+2019-07-27 22:15:40,386 WARN cluster: DEFAULT not found, ip: {"app":"DEFAULT","clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceId":"192.168.2.113#8081#DEFAULT#DEFAULT_GROUP@@provider","ip":"192.168.2.113","ipDeleteTimeout":30000,"lastBeat":1564236940385,"marked":false,"metadata":{},"port":8081,"serviceName":"DEFAULT_GROUP@@provider","tenant":"","weight":1}, will create new cluster with default configuration.
+
+2019-07-27 22:15:40,386 INFO [NACOS-RAFT] datum is changed, key: com.alibaba.nacos.naming.iplist.ephemeral.public##DEFAULT_GROUP@@provider, value: {"cachedChecksum":"","instanceList":[{"app":"DEFAULT","clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceId":"192.168.2.113#8081#DEFAULT#DEFAULT_GROUP@@provider","ip":"192.168.2.113","ipDeleteTimeout":30000,"lastBeat":1564236940385,"marked":false,"metadata":{},"port":8081,"serviceName":"DEFAULT_GROUP@@provider","tenant":"","weight":1}]}
+
+2019-07-27 22:15:54,045 INFO receive config info: unknown#192.168.2.113:8848#1564236954045#6
+
+
+2019-07-27 22:15:59,637 INFO [AUTO-DELETE-IP] service: DEFAULT_GROUP@@nacos-provider, ip: {"app":"DEFAULT","clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":false,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceId":"192.168.2.113#8081#DEFAULT#DEFAULT_GROUP@@nacos-provider","ip":"192.168.2.113","ipDeleteTimeout":30000,"lastBeat":1564236929531,"marked":false,"metadata":{},"port":8081,"serviceName":"DEFAULT_GROUP@@nacos-provider","tenant":"","weight":1}
+
+2019-07-27 22:15:59,792 INFO [NACOS-RAFT] datum is changed, key: com.alibaba.nacos.naming.iplist.ephemeral.public##DEFAULT_GROUP@@nacos-provider, value: {"cachedChecksum":"","instanceList":[]}
+
+2019-07-27 22:16:09,047 INFO receive config info: unknown#192.168.2.113:8848#1564236969047#6
+
+
+2019-07-27 22:16:24,048 INFO receive config info: unknown#192.168.2.113:8848#1564236984048#6
+
+
+2019-07-27 22:16:39,050 INFO receive config info: unknown#192.168.2.113:8848#1564236999050#6
+
+
+2019-07-27 22:16:54,051 INFO receive config info: unknown#192.168.2.113:8848#1564237014051#6
+
+
+2019-07-27 22:17:09,053 INFO receive config info: unknown#192.168.2.113:8848#1564237029053#6
+
+
+2019-07-27 22:17:24,054 INFO receive config info: unknown#192.168.2.113:8848#1564237044054#6
+
+
+2019-07-27 22:17:39,055 INFO receive config info: unknown#192.168.2.113:8848#1564237059055#6
+
+
+2019-07-27 22:17:54,057 INFO receive config info: unknown#192.168.2.113:8848#1564237074057#6
+
+
+2019-07-27 22:18:09,059 INFO receive config info: unknown#192.168.2.113:8848#1564237089059#6
+
+
+2019-07-27 22:18:24,061 INFO receive config info: unknown#192.168.2.113:8848#1564237104061#6
+
+
+2019-07-27 22:18:39,063 INFO receive config info: unknown#192.168.2.113:8848#1564237119063#6
+
+
+2019-07-27 22:18:54,064 INFO receive config info: unknown#192.168.2.113:8848#1564237134064#6
+
+
+2019-07-27 22:19:09,065 INFO receive config info: unknown#192.168.2.113:8848#1564237149065#6
+
+
+2019-07-27 22:19:22,380 INFO [DEAD-SERVICE] {"appName":"","checksum":"aacef82079e567848b94c3e47e923ec","clusterMap":{"DEFAULT":{"defCkport":80,"defIPPort":80,"defaultCheckPort":80,"defaultPort":80,"healthCheckTask":{"cancelled":true,"checkRTBest":9223372036854775807,"checkRTLast":-1,"checkRTLastLast":-1,"checkRTNormalized":2895,"checkRTWorst":0,"cluster":{"$ref":".."},"startTime":1564237162084},"healthChecker":{"type":"TCP"},"metadata":{},"name":"DEFAULT","serviceName":"DEFAULT_GROUP@@nacos-provider","sitegroup":"","useIPPort4Check":true}},"enabled":true,"groupName":"DEFAULT_GROUP","ipDeleteTimeout":30000,"lastModifiedMillis":1564236959795,"metadata":{},"name":"DEFAULT_GROUP@@nacos-provider","namespaceId":"public","owners":[],"protectThreshold":0,"resetWeight":false,"selector":{"type":"none"},"token":""}
+
+2019-07-27 22:19:24,067 INFO receive config info: unknown#192.168.2.113:8848#1564237164067#6
+
+
+2019-07-27 22:19:36,626 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 22:19:39,069 INFO receive config info: unknown#192.168.2.113:8848#1564237179069#6
+
+
+2019-07-27 22:19:54,070 INFO receive config info: unknown#192.168.2.113:8848#1564237194070#6
+
+
+2019-07-27 22:20:09,071 INFO receive config info: unknown#192.168.2.113:8848#1564237209071#6
+
+
+2019-07-27 22:20:24,072 INFO receive config info: unknown#192.168.2.113:8848#1564237224072#6
+
+
+2019-07-27 22:20:39,075 INFO receive config info: unknown#192.168.2.113:8848#1564237239075#6
+
+
+2019-07-27 22:20:54,077 INFO receive config info: unknown#192.168.2.113:8848#1564237254077#6
+
+
+2019-07-27 22:21:09,077 INFO receive config info: unknown#192.168.2.113:8848#1564237269077#6
+
+
+2019-07-27 22:21:24,079 INFO receive config info: unknown#192.168.2.113:8848#1564237284079#6
+
+
+2019-07-27 22:21:39,080 INFO receive config info: unknown#192.168.2.113:8848#1564237299080#6
+
+
+2019-07-27 22:21:54,081 INFO receive config info: unknown#192.168.2.113:8848#1564237314081#6
+
+
+2019-07-27 22:22:09,083 INFO receive config info: unknown#192.168.2.113:8848#1564237329083#6
+
+
+2019-07-27 22:22:24,085 INFO receive config info: unknown#192.168.2.113:8848#1564237344085#6
+
+
+2019-07-27 22:22:39,086 INFO receive config info: unknown#192.168.2.113:8848#1564237359086#6
+
+
+2019-07-27 22:22:54,086 INFO receive config info: unknown#192.168.2.113:8848#1564237374086#6
+
+
+2019-07-27 22:23:09,088 INFO receive config info: unknown#192.168.2.113:8848#1564237389088#6
+
+
+2019-07-27 22:23:24,089 INFO receive config info: unknown#192.168.2.113:8848#1564237404089#6
+
+
+2019-07-27 22:23:39,091 INFO receive config info: unknown#192.168.2.113:8848#1564237419091#6
+
+
+2019-07-27 22:23:54,093 INFO receive config info: unknown#192.168.2.113:8848#1564237434093#6
+
+
+2019-07-27 22:24:09,094 INFO receive config info: unknown#192.168.2.113:8848#1564237449094#6
+
+
+2019-07-27 22:24:24,095 INFO receive config info: unknown#192.168.2.113:8848#1564237464095#6
+
+
+2019-07-27 22:24:36,628 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 22:24:39,096 INFO receive config info: unknown#192.168.2.113:8848#1564237479096#6
+
+
+2019-07-27 22:24:54,098 INFO receive config info: unknown#192.168.2.113:8848#1564237494098#6
+
+
+2019-07-27 22:25:09,100 INFO receive config info: unknown#192.168.2.113:8848#1564237509100#6
+
+
+2019-07-27 22:25:24,101 INFO receive config info: unknown#192.168.2.113:8848#1564237524101#6
+
+
+2019-07-27 22:25:39,103 INFO receive config info: unknown#192.168.2.113:8848#1564237539103#6
+
+
+2019-07-27 22:25:54,104 INFO receive config info: unknown#192.168.2.113:8848#1564237554104#6
+
+
+2019-07-27 22:26:09,105 INFO receive config info: unknown#192.168.2.113:8848#1564237569105#6
+
+
+2019-07-27 22:26:24,106 INFO receive config info: unknown#192.168.2.113:8848#1564237584106#6
+
+
+2019-07-27 22:26:39,108 INFO receive config info: unknown#192.168.2.113:8848#1564237599108#6
+
+
+2019-07-27 22:26:54,110 INFO receive config info: unknown#192.168.2.113:8848#1564237614110#6
+
+
+2019-07-27 22:27:09,111 INFO receive config info: unknown#192.168.2.113:8848#1564237629111#6
+
+
+2019-07-27 22:27:24,113 INFO receive config info: unknown#192.168.2.113:8848#1564237644113#6
+
+
+2019-07-27 22:27:39,115 INFO receive config info: unknown#192.168.2.113:8848#1564237659115#6
+
+
+2019-07-27 22:27:54,115 INFO receive config info: unknown#192.168.2.113:8848#1564237674115#6
+
+
+2019-07-27 22:28:09,116 INFO receive config info: unknown#192.168.2.113:8848#1564237689116#6
+
+
+2019-07-27 22:28:24,118 INFO receive config info: unknown#192.168.2.113:8848#1564237704118#6
+
+
+2019-07-27 22:28:39,119 INFO receive config info: unknown#192.168.2.113:8848#1564237719119#6
+
+
+2019-07-27 22:28:54,120 INFO receive config info: unknown#192.168.2.113:8848#1564237734120#6
+
+
+2019-07-27 22:29:09,122 INFO receive config info: unknown#192.168.2.113:8848#1564237749122#6
+
+
+2019-07-27 22:29:24,123 INFO receive config info: unknown#192.168.2.113:8848#1564237764123#6
+
+
+2019-07-27 22:29:36,629 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 22:29:39,124 INFO receive config info: unknown#192.168.2.113:8848#1564237779124#6
+
+
+2019-07-27 22:29:54,126 INFO receive config info: unknown#192.168.2.113:8848#1564237794126#6
+
+
+2019-07-27 22:30:09,127 INFO receive config info: unknown#192.168.2.113:8848#1564237809127#6
+
+
+2019-07-27 22:30:24,129 INFO receive config info: unknown#192.168.2.113:8848#1564237824129#6
+
+
+2019-07-27 22:30:39,130 INFO receive config info: unknown#192.168.2.113:8848#1564237839130#6
+
+
+2019-07-27 22:30:54,131 INFO receive config info: unknown#192.168.2.113:8848#1564237854131#6
+
+
+2019-07-27 22:31:09,133 INFO receive config info: unknown#192.168.2.113:8848#1564237869133#6
+
+
+2019-07-27 22:31:24,135 INFO receive config info: unknown#192.168.2.113:8848#1564237884135#6
+
+
+2019-07-27 22:31:39,137 INFO receive config info: unknown#192.168.2.113:8848#1564237899137#6
+
+
+2019-07-27 22:31:54,138 INFO receive config info: unknown#192.168.2.113:8848#1564237914138#6
+
+
+2019-07-27 22:32:09,139 INFO receive config info: unknown#192.168.2.113:8848#1564237929139#6
+
+
+2019-07-27 22:32:24,141 INFO receive config info: unknown#192.168.2.113:8848#1564237944141#6
+
+
+2019-07-27 22:32:39,143 INFO receive config info: unknown#192.168.2.113:8848#1564237959143#6
+
+
+2019-07-27 22:32:54,144 INFO receive config info: unknown#192.168.2.113:8848#1564237974144#6
+
+
+2019-07-27 22:33:09,146 INFO receive config info: unknown#192.168.2.113:8848#1564237989146#6
+
+
+2019-07-27 22:33:24,148 INFO receive config info: unknown#192.168.2.113:8848#1564238004148#6
+
+
+2019-07-27 22:33:39,149 INFO receive config info: unknown#192.168.2.113:8848#1564238019149#6
+
+
+2019-07-27 22:33:54,150 INFO receive config info: unknown#192.168.2.113:8848#1564238034150#6
+
+
+2019-07-27 22:34:09,151 INFO receive config info: unknown#192.168.2.113:8848#1564238049151#6
+
+
+2019-07-27 22:34:24,152 INFO receive config info: unknown#192.168.2.113:8848#1564238064152#6
+
+
+2019-07-27 22:34:36,631 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 22:34:39,154 INFO receive config info: unknown#192.168.2.113:8848#1564238079154#6
+
+
+2019-07-27 22:34:54,155 INFO receive config info: unknown#192.168.2.113:8848#1564238094155#6
+
+
+2019-07-27 22:35:09,157 INFO receive config info: unknown#192.168.2.113:8848#1564238109157#6
+
+
+2019-07-27 22:35:24,158 INFO receive config info: unknown#192.168.2.113:8848#1564238124158#6
+
+
+2019-07-27 22:35:39,160 INFO receive config info: unknown#192.168.2.113:8848#1564238139160#6
+
+
+2019-07-27 22:35:54,162 INFO receive config info: unknown#192.168.2.113:8848#1564238154162#6
+
+
+2019-07-27 22:36:09,163 INFO receive config info: unknown#192.168.2.113:8848#1564238169163#6
+
+
+2019-07-27 22:36:24,165 INFO receive config info: unknown#192.168.2.113:8848#1564238184165#6
+
+
+2019-07-27 22:36:39,167 INFO receive config info: unknown#192.168.2.113:8848#1564238199167#6
+
+
+2019-07-27 22:36:54,168 INFO receive config info: unknown#192.168.2.113:8848#1564238214168#6
+
+
+2019-07-27 22:37:09,169 INFO receive config info: unknown#192.168.2.113:8848#1564238229169#6
+
+
+2019-07-27 22:37:24,170 INFO receive config info: unknown#192.168.2.113:8848#1564238244170#6
+
+
+2019-07-27 22:37:39,171 INFO receive config info: unknown#192.168.2.113:8848#1564238259171#6
+
+
+2019-07-27 22:37:54,173 INFO receive config info: unknown#192.168.2.113:8848#1564238274173#6
+
+
+2019-07-27 22:38:09,173 INFO receive config info: unknown#192.168.2.113:8848#1564238289173#6
+
+
+2019-07-27 22:38:24,175 INFO receive config info: unknown#192.168.2.113:8848#1564238304175#6
+
+
+2019-07-27 22:38:39,176 INFO receive config info: unknown#192.168.2.113:8848#1564238319176#6
+
+
+2019-07-27 22:38:54,177 INFO receive config info: unknown#192.168.2.113:8848#1564238334177#6
+
+
+2019-07-27 22:39:09,178 INFO receive config info: unknown#192.168.2.113:8848#1564238349178#6
+
+
+2019-07-27 22:39:24,180 INFO receive config info: unknown#192.168.2.113:8848#1564238364180#6
+
+
+2019-07-27 22:39:36,632 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 22:39:39,182 INFO receive config info: unknown#192.168.2.113:8848#1564238379182#6
+
+
+2019-07-27 22:39:54,184 INFO receive config info: unknown#192.168.2.113:8848#1564238394184#6
+
+
+2019-07-27 22:40:09,185 INFO receive config info: unknown#192.168.2.113:8848#1564238409185#6
+
+
+2019-07-27 22:40:24,186 INFO receive config info: unknown#192.168.2.113:8848#1564238424186#6
+
+
+2019-07-27 22:40:39,188 INFO receive config info: unknown#192.168.2.113:8848#1564238439188#6
+
+
+2019-07-27 22:40:54,188 INFO receive config info: unknown#192.168.2.113:8848#1564238454188#6
+
+
+2019-07-27 22:41:09,190 INFO receive config info: unknown#192.168.2.113:8848#1564238469190#6
+
+
+2019-07-27 22:41:24,190 INFO receive config info: unknown#192.168.2.113:8848#1564238484190#6
+
+
+2019-07-27 22:41:39,193 INFO receive config info: unknown#192.168.2.113:8848#1564238499193#6
+
+
+2019-07-27 22:41:54,194 INFO receive config info: unknown#192.168.2.113:8848#1564238514194#6
+
+
+2019-07-27 22:42:09,196 INFO receive config info: unknown#192.168.2.113:8848#1564238529196#6
+
+
+2019-07-27 22:42:24,198 INFO receive config info: unknown#192.168.2.113:8848#1564238544198#6
+
+
+2019-07-27 22:42:39,199 INFO receive config info: unknown#192.168.2.113:8848#1564238559199#6
+
+
+2019-07-27 22:42:54,200 INFO receive config info: unknown#192.168.2.113:8848#1564238574200#6
+
+
+2019-07-27 22:43:09,202 INFO receive config info: unknown#192.168.2.113:8848#1564238589202#6
+
+
+2019-07-27 22:43:24,203 INFO receive config info: unknown#192.168.2.113:8848#1564238604203#6
+
+
+2019-07-27 22:43:39,204 INFO receive config info: unknown#192.168.2.113:8848#1564238619204#6
+
+
+2019-07-27 22:43:54,206 INFO receive config info: unknown#192.168.2.113:8848#1564238634206#6
+
+
+2019-07-27 22:44:09,207 INFO receive config info: unknown#192.168.2.113:8848#1564238649207#6
+
+
+2019-07-27 22:44:24,209 INFO receive config info: unknown#192.168.2.113:8848#1564238664209#6
+
+
+2019-07-27 22:44:36,634 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 22:44:39,210 INFO receive config info: unknown#192.168.2.113:8848#1564238679210#6
+
+
+2019-07-27 22:44:54,211 INFO receive config info: unknown#192.168.2.113:8848#1564238694211#6
+
+
+2019-07-27 22:45:09,212 INFO receive config info: unknown#192.168.2.113:8848#1564238709212#6
+
+
+2019-07-27 22:45:24,214 INFO receive config info: unknown#192.168.2.113:8848#1564238724214#6
+
+
+2019-07-27 22:45:39,216 INFO receive config info: unknown#192.168.2.113:8848#1564238739216#6
+
+
+2019-07-27 22:45:54,217 INFO receive config info: unknown#192.168.2.113:8848#1564238754217#6
+
+
+2019-07-27 22:46:09,218 INFO receive config info: unknown#192.168.2.113:8848#1564238769218#6
+
+
+2019-07-27 22:46:24,219 INFO receive config info: unknown#192.168.2.113:8848#1564238784219#6
+
+
+2019-07-27 22:46:39,221 INFO receive config info: unknown#192.168.2.113:8848#1564238799221#6
+
+
+2019-07-27 22:46:54,223 INFO receive config info: unknown#192.168.2.113:8848#1564238814223#6
+
+
+2019-07-27 22:47:09,225 INFO receive config info: unknown#192.168.2.113:8848#1564238829225#6
+
+
+2019-07-27 22:47:24,226 INFO receive config info: unknown#192.168.2.113:8848#1564238844226#6
+
+
+2019-07-27 22:47:39,228 INFO receive config info: unknown#192.168.2.113:8848#1564238859228#6
+
+
+2019-07-27 22:47:54,229 INFO receive config info: unknown#192.168.2.113:8848#1564238874229#6
+
+
+2019-07-27 22:48:09,230 INFO receive config info: unknown#192.168.2.113:8848#1564238889230#6
+
+
+2019-07-27 22:48:24,231 INFO receive config info: unknown#192.168.2.113:8848#1564238904231#6
+
+
+2019-07-27 22:48:39,232 INFO receive config info: unknown#192.168.2.113:8848#1564238919232#6
+
+
+2019-07-27 22:48:54,233 INFO receive config info: unknown#192.168.2.113:8848#1564238934233#6
+
+
+2019-07-27 22:49:09,234 INFO receive config info: unknown#192.168.2.113:8848#1564238949234#6
+
+
+2019-07-27 22:49:24,235 INFO receive config info: unknown#192.168.2.113:8848#1564238964235#6
+
+
+2019-07-27 22:49:36,636 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 22:49:39,237 INFO receive config info: unknown#192.168.2.113:8848#1564238979237#6
+
+
+2019-07-27 22:49:54,239 INFO receive config info: unknown#192.168.2.113:8848#1564238994239#6
+
+
+2019-07-27 22:50:09,241 INFO receive config info: unknown#192.168.2.113:8848#1564239009241#6
+
+
+2019-07-27 22:50:24,241 INFO receive config info: unknown#192.168.2.113:8848#1564239024241#6
+
+
+2019-07-27 22:50:39,242 INFO receive config info: unknown#192.168.2.113:8848#1564239039242#6
+
+
+2019-07-27 22:50:54,242 INFO receive config info: unknown#192.168.2.113:8848#1564239054242#6
+
+
+2019-07-27 22:51:09,244 INFO receive config info: unknown#192.168.2.113:8848#1564239069244#6
+
+
+2019-07-27 22:51:24,246 INFO receive config info: unknown#192.168.2.113:8848#1564239084246#6
+
+
+2019-07-27 22:51:39,248 INFO receive config info: unknown#192.168.2.113:8848#1564239099248#6
+
+
+2019-07-27 22:51:54,250 INFO receive config info: unknown#192.168.2.113:8848#1564239114250#6
+
+
+2019-07-27 22:52:09,251 INFO receive config info: unknown#192.168.2.113:8848#1564239129251#6
+
+
+2019-07-27 22:52:24,252 INFO receive config info: unknown#192.168.2.113:8848#1564239144252#6
+
+
+2019-07-27 22:52:39,254 INFO receive config info: unknown#192.168.2.113:8848#1564239159254#6
+
+
+2019-07-27 22:52:54,255 INFO receive config info: unknown#192.168.2.113:8848#1564239174255#6
+
+
+2019-07-27 22:53:09,257 INFO receive config info: unknown#192.168.2.113:8848#1564239189257#6
+
+
+2019-07-27 22:53:24,259 INFO receive config info: unknown#192.168.2.113:8848#1564239204259#6
+
+
+2019-07-27 22:53:39,260 INFO receive config info: unknown#192.168.2.113:8848#1564239219260#6
+
+
+2019-07-27 22:53:54,262 INFO receive config info: unknown#192.168.2.113:8848#1564239234262#6
+
+
+2019-07-27 22:54:09,263 INFO receive config info: unknown#192.168.2.113:8848#1564239249263#6
+
+
+2019-07-27 22:54:24,264 INFO receive config info: unknown#192.168.2.113:8848#1564239264264#6
+
+
+2019-07-27 22:54:36,638 INFO [HEALTH-CHECK] health check is true
+
+2019-07-27 22:54:39,266 INFO receive config info: unknown#192.168.2.113:8848#1564239279266#6
+
+
+2019-07-27 22:54:54,267 INFO receive config info: unknown#192.168.2.113:8848#1564239294267#6
+
+
+2019-07-27 22:55:09,269 INFO receive config info: unknown#192.168.2.113:8848#1564239309269#6
+
+
+2019-07-27 22:55:24,270 INFO receive config info: unknown#192.168.2.113:8848#1564239324270#6
+
+
+2019-07-27 22:55:39,272 INFO receive config info: unknown#192.168.2.113:8848#1564239339272#6
+
+
+2019-07-27 22:55:54,273 INFO receive config info: unknown#192.168.2.113:8848#1564239354273#6
+
+
+2019-07-27 22:56:09,273 INFO receive config info: unknown#192.168.2.113:8848#1564239369273#6
+
+
+2019-07-27 22:56:24,274 INFO receive config info: unknown#192.168.2.113:8848#1564239384274#6
+
+
+2019-07-27 22:56:39,276 INFO receive config info: unknown#192.168.2.113:8848#1564239399276#6
+
+
+2019-07-27 22:56:54,277 INFO receive config info: unknown#192.168.2.113:8848#1564239414277#6
+
+

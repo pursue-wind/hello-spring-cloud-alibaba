@@ -1,0 +1,16 @@
+2019-07-27 22:14:29,636 INFO DEFAULT_GROUP@@nacos-provider {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-07-27 22:14:29,639 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@nacos-provider, ips: 192.168.2.113:8081_true,
+
+2019-07-27 22:15:40,386 INFO DEFAULT_GROUP@@provider {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-07-27 22:15:40,386 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 192.168.2.113:8081_true,
+
+2019-07-27 22:15:44,632 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:8081@DEFAULT@DEFAULT_GROUP@@nacos-provider, region: unknown, msg: client timeout after 15000, last beat: 1564236929531
+
+2019-07-27 22:15:59,795 INFO DEFAULT_GROUP@@nacos-provider {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2019-07-27 22:15:59,795 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@nacos-provider, ips: 
+
+2019-07-27 22:56:55,848 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:8081@DEFAULT@DEFAULT_GROUP@@provider, region: unknown, msg: client timeout after 15000, last beat: 1564239400342
+
