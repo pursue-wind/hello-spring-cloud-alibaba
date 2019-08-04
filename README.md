@@ -1739,3 +1739,367 @@ spring.cloud.nacos.config.server-addr=127.0.0.1:8848
 - `Run` -> `Edit Configurations..` ->`Active profile` 内容改成prod
 
 - 观察日志，判断是否成功加载配置
+
+# Spring Cloud Alibaba 链路追踪
+
+## 为什么需要链路追踪
+
+### 什么是链路追踪
+
+微服务架构是通过业务来划分服务的，使用 REST 调用。对外暴露的一个接口，可能需要很多个服务协同才能完成这个接口功能，如果链路上任何一个服务出现问题或者网络超时，都会形成导致接口调用失败。随着业务的不断扩张，服务之间互相调用会越来越复杂。
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-1.png?raw=true)
+
+随着服务的越来越多，对调用链的分析会越来越复杂。它们之间的调用关系也许如下：
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-2.png?raw=true)
+
+面对以上情况，我们就需要一些可以帮助理解系统行为、用于分析性能问题的工具，以便发生故障的时候，能够快速定位和解决问题，这就是所谓的 APM（应用性能管理）。
+
+### 什么是 SkyWalking
+
+目前主要的一些 APM 工具有: Cat、Zipkin、Pinpoint、SkyWalking；Apache SkyWalking 是观察性分析平台和应用性能管理系统。提供分布式追踪、服务网格遥测分析、度量聚合和可视化一体化解决方案。
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-3.png?raw=true)
+
+- **Skywalking Agent：** 使用 JavaAgent 做字节码植入，无侵入式的收集，并通过 HTTP 或者 gRPC 方式发送数据到 SkyWalking Collector。
+- **SkyWalking Collector：** 链路数据收集器，对 agent 传过来的数据进行整合分析处理并落入相关的数据存储中。
+- **Storage：** SkyWalking 的存储，时间更迭，SW 已经开发迭代到了 6.x 版本，在 6.x 版本中支持以 ElasticSearch(支持 6.x)、Mysql、TiDB、H2、作为存储介质进行数据存储。
+- **UI：** Web 可视化平台，用来展示落地的数据。
+
+### SkyWalking 功能特性
+
+- 多种监控手段，语言探针和服务网格(Service Mesh)
+- 多语言自动探针，Java，.NET Core 和 Node.JS
+- 轻量高效，不需要大数据
+- 模块化，UI、存储、集群管理多种机制可选
+- 支持告警
+- 优秀的可视化方案
+
+
+
+## SkyWalking 服务端配置
+
+### 基于 Docker 安装 ElasticSearch
+
+SkyWalking 存储方案有多种，官方推荐的方案是 ElasticSearch ，所以我们需要先安装 ElasticSearch。
+
+#### docker-compose.yml
+
+```yaml
+version: '3.3'
+services:
+  elasticsearch:
+    image: wutang/elasticsearch-shanghai-zone:6.3.2
+    container_name: elasticsearch
+    restart: always
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      cluster.name: elasticsearch
+```
+
+其中，`9200` 端口号为 SkyWalking 配置 ElasticSearch 所需端口号，`cluster.name` 为 SkyWalking 配置 ElasticSearch 集群的名称
+
+#### 测试是否启动成功
+
+浏览器访问 http://elasticsearchIP:9200/ ，浏览器返回如下信息即表示成功启动
+
+```
+{
+  "name": "DMSLbHh",
+  "cluster_name": "elasticsearch",
+  "cluster_uuid": "tUAjQlK0S76RlEraVvkj5A",
+  "version": {
+    "number": "6.3.2",
+    "build_flavor": "default",
+    "build_type": "tar",
+    "build_hash": "053779d",
+    "build_date": "2018-07-20T05:20:23.451332Z",
+    "build_snapshot": false,
+    "lucene_version": "7.3.1",
+    "minimum_wire_compatibility_version": "5.6.0",
+    "minimum_index_compatibility_version": "5.0.0"
+  },
+  "tagline": "You Know, for Search"
+}
+```
+
+
+
+### 下载并启动 SkyWalking
+
+官方已经为我们准备好了编译过的服务端版本，下载地址为 http://skywalking.apache.org/downloads/，这里我下载 6.1 版本
+
+
+
+#### 配置 SkyWalking
+
+下载完成后解压缩，进入 `apache-skywalking-apm-incubating/config` 目录并修改 `application.yml` 配置文件
+
+```yaml
+...
+
+storage:
+  elasticsearch:
+    nameSpace: ${SW_NAMESPACE:""}
+    clusterNodes: ${SW_STORAGE_ES_CLUSTER_NODES:192.168.2.119:9200}
+    user: ${SW_ES_USER:""}
+    password: ${SW_ES_PASSWORD:""}
+    indexShardsNumber: ${SW_STORAGE_ES_INDEX_SHARDS_NUMBER:2}
+    indexReplicasNumber: ${SW_STORAGE_ES_INDEX_REPLICAS_NUMBER:0}
+    bulkActions: ${SW_STORAGE_ES_BULK_ACTIONS:2000} 
+    bulkSize: ${SW_STORAGE_ES_BULK_SIZE:20}
+    flushInterval: ${SW_STORAGE_ES_FLUSH_INTERVAL:10} 
+    concurrentRequests: ${SW_STORAGE_ES_CONCURRENT_REQUESTS:2} 
+    metadataQueryMaxSize: ${SW_STORAGE_ES_QUERY_MAX_SIZE:5000}
+    segmentQueryMaxSize: ${SW_STORAGE_ES_QUERY_SEGMENT_SIZE:200}
+  # h2:
+  #   driver: ${SW_STORAGE_H2_DRIVER:org.h2.jdbcx.JdbcDataSource}
+  #   url: ${SW_STORAGE_H2_URL:jdbc:h2:mem:skywalking-oap-db}
+  #   user: ${SW_STORAGE_H2_USER:sa}
+  #   metadataQueryMaxSize: ${SW_STORAGE_H2_QUERY_MAX_SIZE:5000}
+  
+...
+```
+
+
+
+这里需要做三件事：
+
+- 注释 H2 存储方案
+- 启用 ElasticSearch 存储方案
+- 修改 ElasticSearch 服务器地址
+
+#### 启动 SkyWalking
+
+修改完配置后，进入 `apache-skywalking-apm-incubating\bin` 目录，运行 `startup.bat` 启动服务端，看到Spring即启动完毕
+
+通过浏览器访问 http://localhost:8080 出现如下界面即表示启动成功
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-login.png?raw=true)
+
+默认的用户名密码为：admin/admin，登录成功后，效果如下图
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-login-success.png?raw=true)
+
+# SkyWalking 客户端配置
+
+### Java Agent 服务器探针
+
+参考官网给出的帮助 [Setup java agent](https://github.com/apache/incubator-skywalking/blob/master/docs/en/setup/service-agent/java-agent/README.md)，我们需要使用官方提供的探针为我们达到监控的目的，按照实际情况我们需要实现三种部署方式
+
+- IDEA 部署探针
+- Java 启动方式部署探针（我们是 Spring Boot 应用程序，需要使用 `java -jar` 的方式启动应用）
+- Docker 启动方式部署探针（需要做到一次构建到处运行的持续集成效果，本章节暂不提供解决方案，到后面的实战环节再实现）
+
+探针文件在 `apache-skywalking-apm-incubating/agent` 目录下
+
+### IDEA 部署探针
+
+创建一个名为 `hello-spring-cloud-external-skywalking` 的目录，并将 `agent` 整个目录拷贝进来
+
+修改项目的 JVM 运行参数，点击菜单栏中的 `Run` -> `EditConfigurations...`，此处我们以 `provider` 项目为例，修改参数如下
+
+```bash
+-javaagent:D:\Mirror\Coding\hello-spring-cloud-alibaba\hello-spring-cloud-external-skywalking\agent\skywalking-agent.jar
+-Dskywalking.agent.service_name=provider
+-Dskywalking.collector.backend_service=localhost:11800
+```
+
+- `-javaagent`：用于指定探针路径（IDEA右键skywalking-agent.jar，copy path）
+- `-Dskywalking.agent.service_name`：用于重写 `agent/config/agent.config` 配置文件中的服务名
+- `-Dskywalking.collector.backend_service`：用于重写 `agent/config/agent.config` 配置文件中的服务地址
+
+### Java 启动方式
+
+```bash
+java -javaagent:/path/to/skywalking-agent/skywalking-agent.jar -Dskywalking.agent.service_name=provider -Dskywalking.collector.backend_service=localhost:11800 -jar yourApp.jar
+```
+
+### 测试监控
+
+启动 `provider` 项目，通过观察日志可以发现，已经成功加载探针
+
+```
+DEBUG 2019-08-04 20:03:49:046 main AgentPackagePath :  The beacon class location 
+INFO 2019-08-04 20:03:49:051 main SnifferConfigInitializer :  Config file found i
+20:03:53.713 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.718 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.751 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.751 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.758 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.760 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.760 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.762 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.763 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.764 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking
+20:03:53.765 [SkywalkingAgent-1-GRPCChannelManager-0] DEBUG org.apache.skywalking...
+```
+
+
+
+启动服务，访问接口再刷新 SkyWalking Web UI，你会发现 Service 与 Endpoint 已经成功检测到了
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-agent-1.png?raw=true)
+
+至此，表示 SkyWalking 链路追踪配置成功
+
+### SkyWalking Trace 监控
+
+SkyWalking 通过业务调用监控进行依赖分析，提供给我们了服务之间的服务调用拓扑关系、以及针对每个 Endpoint 的 Trace 记录。
+
+#### 调用链路监控
+
+点击 `Trace` 菜单，进入追踪页
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-trace-1.png?raw=true)
+
+点击 `Trace ID` 展开详细信息
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-trace-2.png?raw=true)
+
+#### 服务性能指标监控
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-service-1.png?raw=true)
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-service-1.png?raw=true)
+
+![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-topology.png?raw=true)
+
+- **Avg SLA：** 服务可用性（主要是通过请求成功与失败次数来计算）
+- **CPM：** 每分钟调用次数
+- **Avg Response Time：** 平均响应时间
+
+上图中展示了服务在一定时间范围内的相关数据，包括：
+
+- 服务可用性指标 SLA
+- 每分钟平均响应数
+- 平均响应时间
+- 服务进程 PID
+- 服务所在物理机的 IP、Host、OS
+- 运行时 CPU 使用率
+- 运行时堆内存使用率
+- 运行时非堆内存使用率
+- GC 情况
+
+
+
+## 附：Maven Assembly 插件
+
+
+### 什么是 Assembly Plugin
+
+Assembly 插件目的是提供一个把工程依赖元素、模块、网站文档等其他文件存放到单个归档文件里。
+
+### Assembly 支持的归档文件类型
+
+- zip
+- tar.gz
+- tar.bz2
+- jar
+- dir
+- war
+
+### 使用步骤
+
+此处以将 SkyWalking 探针打包为 `tar.gz` 为例，为后期持续集成时构建 Docker 镜像做好准备
+
+#### POM
+
+在` hello-spring-cloud-external-skywalking`项目中增加`pom.xml` ，只要插件配置
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.mirrorming</groupId>
+        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>hello-spring-cloud-external-skywalking</artifactId>
+    <packaging>jar</packaging>
+
+    <name>hello-spring-cloud-external-skywalking</name>
+    <url>http://www.mirrorming.cn</url>
+    <inceptionYear>2019-Now</inceptionYear>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <!-- 配置执行器 -->
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- 绑定到 package 生命周期阶段上 -->
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 只运行一次 -->
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>skywalking</finalName>
+                            <descriptors>
+                                <!-- 配置描述文件路径 -->
+                                <descriptor>src/main/resources/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+
+#### assembly.xml
+
+创建 `src/main/resources/assembly.xml` 配置文件
+
+```xml
+<assembly>
+    <id>6.1.0</id>
+    <formats>
+        <!-- 打包的文件格式，支持 zip、tar.gz、tar.bz2、jar、dir、war -->
+        <format>tar.gz</format>
+    </formats>
+    <!-- tar.gz 压缩包下是否生成和项目名相同的根目录，有需要请设置成 true -->
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <dependencySets>
+        <dependencySet>
+            <!-- 是否把本项目添加到依赖文件夹下，有需要请设置成 true -->
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory>
+            <!-- 将 scope 为 runtime 的依赖包打包 -->
+            <scope>runtime</scope>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <!-- 设置需要打包的文件路径 -->
+            <directory>agent</directory>
+            <!-- 打包后的输出路径 -->
+            <outputDirectory></outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>
+```
+#### 打包
+
+```bash
+mvn clean package
+mvn clean install
+```
+
+- package：会在 target 目录下创建名为 `skywalking-6.1.0.tar.gz` 的压缩包
+- install：会在本地仓库目录下创建名为 `hello-spring-cloud-external-skywalking-1.0.0-SNAPSHOT-6.1.0.tar.gz` 的压缩包
+
