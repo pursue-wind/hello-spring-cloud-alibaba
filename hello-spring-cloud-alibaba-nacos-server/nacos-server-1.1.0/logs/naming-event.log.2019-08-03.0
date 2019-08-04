@@ -1,0 +1,108 @@
+2019-08-03 13:48:51,709 INFO DEFAULT_GROUP@@provider {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 13:48:51,712 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 192.168.2.113:8081_true,
+
+2019-08-03 13:49:06,565 INFO DEFAULT_GROUP@@consumer-feign {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:9092:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 13:49:06,565 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@consumer-feign, ips: 192.168.2.113:9092_true,
+
+2019-08-03 13:50:08,523 INFO DEFAULT_GROUP@@consumer {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:9091:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 13:50:08,523 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@consumer, ips: 192.168.2.113:9091_true,
+
+2019-08-03 13:51:21,589 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:9092@DEFAULT@DEFAULT_GROUP@@consumer-feign, region: unknown, msg: client timeout after 15000, last beat: 1564811466520
+
+2019-08-03 13:51:33,264 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@consumer-feign, ips: 192.168.2.113:9092_false,
+
+2019-08-03 13:51:38,162 INFO service: DEFAULT_GROUP@@consumer-feign {POS} {IP-ENABLED} valid: 192.168.2.113:9092@DEFAULT, region: unknown, msg: client beat ok
+
+2019-08-03 13:51:56,717 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:8081@DEFAULT@DEFAULT_GROUP@@provider, region: unknown, msg: client timeout after 15000, last beat: 1564811501591
+
+2019-08-03 13:52:11,879 INFO DEFAULT_GROUP@@provider {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2019-08-03 13:52:11,879 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 
+
+2019-08-03 14:06:19,444 INFO DEFAULT_GROUP@@provider {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 14:06:19,445 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 192.168.2.113:8081_true,
+
+2019-08-03 14:11:07,134 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:8081@DEFAULT@DEFAULT_GROUP@@provider, region: unknown, msg: client timeout after 15000, last beat: 1564812649392
+
+2019-08-03 14:11:22,144 INFO DEFAULT_GROUP@@provider {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2019-08-03 14:11:22,144 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 
+
+2019-08-03 14:34:57,379 INFO DEFAULT_GROUP@@spring-gateway {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:9000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 14:34:57,379 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@spring-gateway, ips: 192.168.2.113:9000_true,
+
+2019-08-03 14:36:25,566 INFO DEFAULT_GROUP@@provider {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 14:36:25,566 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 192.168.2.113:8081_true,
+
+2019-08-03 15:43:34,783 INFO DEFAULT_GROUP@@provider {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 15:43:34,786 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 192.168.2.113:8081_true,
+
+2019-08-03 15:43:45,973 INFO DEFAULT_GROUP@@consumer-feign {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:9092:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 15:43:45,973 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@consumer-feign, ips: 192.168.2.113:9092_true,
+
+2019-08-03 15:43:49,305 INFO DEFAULT_GROUP@@consumer {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:9091:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 15:43:49,305 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@consumer, ips: 192.168.2.113:9091_true,
+
+2019-08-03 15:43:54,175 INFO DEFAULT_GROUP@@spring-gateway {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:9000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 15:43:54,175 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@spring-gateway, ips: 192.168.2.113:9000_true,
+
+2019-08-03 15:46:30,382 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@consumer-feign, ips: 192.168.2.113:9092_true,
+
+2019-08-03 15:46:34,198 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:9000@DEFAULT@DEFAULT_GROUP@@spring-gateway, region: unknown, msg: client timeout after 15000, last beat: 1564818379119
+
+2019-08-03 15:46:35,700 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@spring-gateway, ips: 192.168.2.113:9000_false,
+
+2019-08-03 15:46:40,639 INFO service: DEFAULT_GROUP@@spring-gateway {POS} {IP-ENABLED} valid: 192.168.2.113:9000@DEFAULT, region: unknown, msg: client beat ok
+
+2019-08-03 16:00:29,347 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:9000@DEFAULT@DEFAULT_GROUP@@spring-gateway, region: unknown, msg: client timeout after 15000, last beat: 1564819210639
+
+2019-08-03 16:00:29,355 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@spring-gateway, ips: 192.168.2.113:9000_false,
+
+2019-08-03 16:00:34,310 INFO service: DEFAULT_GROUP@@spring-gateway {POS} {IP-ENABLED} valid: 192.168.2.113:9000@DEFAULT, region: unknown, msg: client beat ok
+
+2019-08-03 16:41:04,012 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 192.168.2.113:8081_true,
+
+2019-08-03 16:44:59,262 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 192.168.2.113:8081_true,
+
+2019-08-03 17:08:57,068 INFO DEFAULT_GROUP@@provider {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.2.113:8082:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 17:08:57,068 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 192.168.2.113:8082_true,192.168.2.113:8081_true,
+
+2019-08-03 17:09:00,653 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:8081@DEFAULT@DEFAULT_GROUP@@provider, region: unknown, msg: client timeout after 15000, last beat: 1564823324216
+
+2019-08-03 17:09:15,775 INFO DEFAULT_GROUP@@provider {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.2.113:8081:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2019-08-03 17:09:15,775 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 192.168.2.113:8082_true,
+
+2019-08-03 17:18:37,420 INFO DEFAULT_GROUP@@provider {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.2.113:8082:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2019-08-03 17:18:37,420 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@provider, ips: 
+
+2019-08-03 17:18:50,228 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:9000@DEFAULT@DEFAULT_GROUP@@spring-gateway, region: unknown, msg: client timeout after 15000, last beat: 1564823914301
+
+2019-08-03 17:18:50,384 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:9091@DEFAULT@DEFAULT_GROUP@@consumer, region: unknown, msg: client timeout after 15000, last beat: 1564823914212
+
+2019-08-03 17:18:52,073 INFO {POS} {IP-DISABLED} valid: 192.168.2.113:9092@DEFAULT@DEFAULT_GROUP@@consumer-feign, region: unknown, msg: client timeout after 15000, last beat: 1564823915316
+
+2019-08-03 17:19:05,233 INFO DEFAULT_GROUP@@spring-gateway {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.2.113:9000:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2019-08-03 17:19:05,233 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@spring-gateway, ips: 
+
+2019-08-03 17:19:05,389 INFO DEFAULT_GROUP@@consumer {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.2.113:9091:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2019-08-03 17:19:05,389 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@consumer, ips: 
+
+2019-08-03 17:19:07,079 INFO DEFAULT_GROUP@@consumer-feign {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.2.113:9092:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2019-08-03 17:19:07,079 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@consumer-feign, ips: 
+
