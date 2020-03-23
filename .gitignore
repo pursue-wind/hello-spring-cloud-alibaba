@@ -21,8 +21,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+hello-spring-cloud-alibaba-consumer/target
+hello-spring-cloud-alibaba-consumer-feign/target
+hello-spring-cloud-alibaba-gateway/target
+hello-spring-cloud-alibaba-provider/target
+hello-spring-cloud-alibaba-rocketmq-consumer/target
+hello-spring-cloud-alibaba-rocketmq-provider/target
+hello-spring-cloud-external-skywalking/target
+hello-spring-cloud-stream-rabbitmq/target
 *.iml
+*/target
 target
-/hello-spring-cloud-alibaba-nacos-server/nacos-server-1.1.0/nacos/bin/logs/
 /.idea/
 **.iml

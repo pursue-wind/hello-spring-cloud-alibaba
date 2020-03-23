@@ -36,7 +36,17 @@
 
         <!-- Spring Cloud Begin -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!-- sentinel -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
         </dependency>
         <!-- Spring Cloud End -->
@@ -48,7 +58,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.mirrorming.spring.cloud.alibaba.rocketmq.provider.RocketMQProviderApplication</mainClass>
+                    <mainClass>cn.mirrorming.spring.cloud.alibaba.rocketmq.provider.RocketMQProviderApplication
+                    </mainClass>
                 </configuration>
             </plugin>
         </plugins>

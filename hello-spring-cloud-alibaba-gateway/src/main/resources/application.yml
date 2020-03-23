@@ -11,7 +11,7 @@ spring:
     sentinel:
       transport:
         port: 8721
-        dashboard: 127.0.0.1:8080
+        dashboard: 127.0.0.1:8081
     # 路由网关配置
     gateway:
       # 设置与服务注册发现组件结合，这样可以采用服务名的路由策略

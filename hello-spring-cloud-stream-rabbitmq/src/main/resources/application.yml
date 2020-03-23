@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: spring-cloud-stream
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8081
+        # 当前应用被sentinel监控的端口
+        port: 8719
+    stream:
+      bindings:
+        myMessageInput:
+          group: article # 分组之后多个实例只有一个收到消息
+          content-type: application/json
+
+
+  #    stream:
+#      bindings:
+#        input:
+#          destination: my-destination
+#          group: my-group
+#        output:
+#          destination: my-destination
+
+  rabbitmq:
+    host: 192.168.2.116
+    port: 5672
+    username: mirror
+    password: 1234
+
+
+
+server:
+  port: 9966
+

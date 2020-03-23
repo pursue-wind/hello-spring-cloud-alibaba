@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProviderController {
 
-    @Value("${server.port}")
     private String port;
 
     @GetMapping(value = "/echo/{message}")

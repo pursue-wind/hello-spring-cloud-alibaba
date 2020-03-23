@@ -2,10 +2,14 @@ spring:
   application:
     name: rocketmq-consumer
   cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
     stream:
       rocketmq:
         binder:
-          namesrv-addr: 192.168.2.116:9876
+
+          namesrv-addr: 192.168.187.128:9876
         bindings:
           input: {consumer.orderly: true}
       bindings:

@@ -1,6 +1,5 @@
 # hello-spring-cloud-alibaba
 
-## 简介
 ### 概述
 
 **2018 年 10 月 31 日的凌晨，Spring Cloud Alibaba 正式入驻了 Spring Cloud 官方孵化器，并在 Maven 中央库发布了第一个版本。**
@@ -44,279 +43,17 @@ Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。�
 
 Spring Cloud Alibaba 项目都是基于 Spring Cloud，而 Spring Cloud 项目又是基于 Spring Boot 进行开发，并且都是使用 Maven 做项目管理工具。在实际开发中，我们一般都会创建一个依赖管理项目作为 Maven 的 Parent 项目使用，这样做可以极大的方便我们对 Jar 包版本的统一管理。
 
-### 创建依赖管理项目
+### 依赖管理项目
 
-创建一个工程名为 `hello-spring-cloud-alibaba-dependencies` 的项目，`pom.xml` 配置文件如下：
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.6.RELEASE</version>
-    </parent>
-
-    <groupId>cn.mirrorming</groupId>
-    <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
-    <name>hello-spring-cloud-alibaba-dependencies</name>
-    <url>http://www.mirrorming.cn</url>
-    <inceptionYear>2019-Now</inceptionYear>
-
-    <properties>
-        <!-- Environment Settings -->
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <!-- Spring Settings -->
-        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
-        <spring-cloud-alibaba.version>0.2.1.RELEASE</spring-cloud-alibaba.version>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <!-- Compiler 插件, 设定 JDK 版本 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <showWarnings>true</showWarnings>
-                </configuration>
-            </plugin>
-
-            <!-- 打包 jar 文件时，配置 manifest 文件，加入 lib 包的 jar 依赖 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <addMavenDescriptor>false</addMavenDescriptor>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <archive>
-                                <manifest>
-                                    <!-- Add directory entries -->
-                                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                    <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                                    <addClasspath>true</addClasspath>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- resource -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-            </plugin>
-
-            <!-- install -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-            </plugin>
-
-            <!-- clean -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-            </plugin>
-
-            <!-- ant -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-            </plugin>
-
-            <!-- dependency -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-            </plugin>
-        </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <!-- Java Document Generate -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <phase>prepare-package</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!-- YUI Compressor (CSS/JS压缩) -->
-                <plugin>
-                    <groupId>net.alchim31.maven</groupId>
-                    <artifactId>yuicompressor-maven-plugin</artifactId>
-                    <version>1.5.1</version>
-                    <executions>
-                        <execution>
-                            <phase>prepare-package</phase>
-                            <goals>
-                                <goal>compress</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <encoding>UTF-8</encoding>
-                        <jswarn>false</jswarn>
-                        <nosuffix>true</nosuffix>
-                        <linebreakpos>30000</linebreakpos>
-                        <force>true</force>
-                        <includes>
-                            <include>**/*.js</include>
-                            <include>**/*.css</include>
-                        </includes>
-                        <excludes>
-                            <exclude>**/*.min.js</exclude>
-                            <exclude>**/*.min.css</exclude>
-                        </excludes>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <!-- 资源文件配置 -->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-    </build>
-
-    <repositories>
-        <repository>
-            <id>aliyun-repos</id>
-            <name>Aliyun Repository</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>sonatype-repos</id>
-            <name>Sonatype Repository</name>
-            <url>https://oss.sonatype.org/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>sonatype-repos-s</id>
-            <name>Sonatype Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>aliyun-repos</id>
-            <name>Aliyun Repository</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-</project>
-```
+创建一个工程名为 `hello-spring-cloud-alibaba-dependencies` 的项目，2020/3/23更新，升级`spring-cloud-alibaba-dependencies`和`spring-cloud-dependencies`版本
 
 - parent：继承了 Spring Boot 的 Parent，表示我们是一个 Spring Boot 工程
 - package：`pom`，表示该项目仅当做依赖项目，没有具体的实现代码
-- `spring-cloud-alibaba-dependencies`：在 `properties` 配置中预定义了版本号为 `0.2.1.RELEASE` ，表示我们的 Spring Cloud Alibaba 对应的是 Spring Cloud Finchley 版本
+- `spring-cloud-alibaba-dependencies`：升级为 `2.1.0.RELEASE` 
+- `spring-cloud-dependencies`：升级为 `Hoxton.RELEASE` 
 - build：配置了项目所需的各种插件
 - repositories：配置项目下载依赖时的第三方库
-
-### 依赖版本说明
-
-项目的最新版本是 0.2.1.RELEASE 和 0.1.1.RELEASE，版本 0.2.1.RELEASE 对应的是 Spring Cloud Finchley 版本，版本 0.1.1.RELEASE 对应的是 Spring Cloud Edgware 版本。
-
-小提示
-
-截止到博客发表时间 `2019 年 01 月 05 日`，项目还处在孵化阶段，故所有版本号都以 `0` 开头；后续肯定会有很多强大的功能帮助我们更好的实现分布式应用的开发；
-
-### 与 Spring Cloud Netflix 的区别
-
-主要增加了 `org.springframework.cloud:spring-cloud-alibaba-dependencies`
-
-## 2. 服务注册与发现
+## 2. 服务注册与发现(更换最新的 nacos 1.2.0)
 
 ### 概述
 
@@ -421,141 +158,12 @@ startup.cmd
 
 ![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos.png?raw=true)
 
-**注：从 0.8.0 版本开始，需要登录才可访问，默认账号密码为 nacos/nacos**
 
-
-
-## 3. 创建服务提供者
+## 3. 服务提供者 - hello-spring-cloud-alibaba-provider
 
 ### 概述
 
-通过一个简单的示例来感受一下如何将服务注册到 Nacos，其实和 Eureka 没有太大差别。
-
-### POM
-
-创建一个工程名为 `hello-spring-cloud-alibaba-provider` 的服务提供者项目，`pom.xml` 配置如下：
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>cn.mirrorming</groupId>
-        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
-    </parent>
-
-    <artifactId>hello-spring-cloud-alibaba-provider</artifactId>
-    <packaging>jar</packaging>
-
-    <name>hello-spring-cloud-alibaba-provider</name>
-    <url>http://www.mirrorming.cn</url>
-    <inceptionYear>2019-Now</inceptionYear>
-
-    <dependencies>
-        <!-- Spring Boot Begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- Spring Boot End -->
-
-        <!-- Spring Cloud Begin -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <!-- Spring Cloud End -->
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>cn.mirrorming.hello.spring.cloud.alibaba.provider.ProviderApplication</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
-```
-
-
-### Application
-
-通过 `@EnableDiscoveryClient` 注解表明是一个 Nacos 客户端，该注解是 Spring Cloud 提供的原生注解
-
-```java
-package cn.mirrorming.hello.spring.cloud.alibaba.provider;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
-@SpringBootApplication
-@EnableDiscoveryClient
-public class ProviderApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ProviderApplication.class, args);
-    }
-}
-```
-
-```java
-package cn.mirrorming.hello.spring.cloud.alibaba.provider.controller;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class ProviderController {
-
-    @Value("${server.port}")
-    private String port;
-
-    @GetMapping(value = "/echo/{message}")
-    public String echo(@PathVariable String message) {
-        return "Hello Nacos Discovery " + message + " , From port :" + port;
-    }
-}
-```
-
-### application.yml
-
-```yaml
-spring:
-  application:
-    name: provider
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-
-server:
-  port: 8081
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-```
+通过一个简单的示例来感受一下如何将服务注册到 Nacos。
 
 ### 启动工程
 
@@ -604,93 +212,11 @@ spring-cloud-starter-alibaba-nacos-discovery 在实现的时候提供了一个 E
 
 
 
-## 4. 创建服务消费者
+## 4. 创建服务消费者 - hello-spring-cloud-alibaba-consumer
 
 ### 概述
 
 服务消费者的创建与服务提供者大同小异，这里采用最原始的一种方式，即显示的使用 LoadBalanceClient 和 RestTemplate 结合的方式来访问。
-
-### POM
-
-创建一个工程名为 `hello-spring-cloud-alibaba-consumer` 的服务消费者项目，`pom.xml` 配置如下：
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>cn.mirrorming</groupId>
-        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
-    </parent>
-
-    <artifactId>hello-spring-cloud-alibaba-consumer</artifactId>
-    <packaging>jar</packaging>
-
-    <name>hello-spring-cloud-alibaba-consumer</name>
-    <url>http://www.mirrorming.cn</url>
-    <inceptionYear>2019-Now</inceptionYear>
-
-    <dependencies>
-        <!-- Spring Boot Begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- Spring Boot End -->
-
-        <!-- Spring Cloud Begin -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <!-- Spring Cloud End -->
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>cn.mirrorming.spring.cloud.alibaba.consumer.ConsumerApplication</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
-```
-
-### Application
-
-```java
-package cn.mirrorming.spring.cloud.alibaba.consumer;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
-@SpringBootApplication
-@EnableDiscoveryClient
-public class ConsumerApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ConsumerApplication.class, args);
-    }
-}
-
-```
 
 ### Configuration
 
@@ -713,67 +239,6 @@ public class ConsumerConfiguration {
 
 ```
 
-
-### Controller
-
-创建一个名为 `ConsumerController` 测试用的 Controller
-
-```java
-package cn.mirrorming.spring.cloud.alibaba.consumer.controller;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
-@RestController
-public class ConsumerController {
-
-    @Autowired
-    private LoadBalancerClient loadBalancerClient;
-
-    @Autowired
-    private RestTemplate restTemplate;
-
-    @Value("${spring.application.name}")
-    private String appName;
-
-    @GetMapping(value = "/echo/app/name")
-    public String echo() {
-        //使用 LoadBalanceClient 和 RestTemplate 结合的方式来访问
-        ServiceInstance serviceInstance = loadBalancerClient.choose("provider");
-        String url = String.format("http://%s:%s/echo/%s", serviceInstance.getHost(), serviceInstance.getPort(), appName);
-        return restTemplate.getForObject(url, String.class);
-    }
-}
-```
-
-
-### application.yml
-
-```yaml
-spring:
-  application:
-    name: consumer
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-
-server:
-  port: 9091
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-```
-
-
 ### 启动工程
 
 通过浏览器访问 `http://localhost:8848/nacos`，即 Nacos Server 网址
@@ -795,7 +260,7 @@ Hello Nacos Discovery consumer
 
 ![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-discovery2.png?raw=true)
 
-## 5. 创建服务消费者（Feign）
+## 5. 创建服务消费者（Feign）- hello-spring-cloud-alibaba-nacos-consumer-feign
 
 ### 概述
 
@@ -803,102 +268,11 @@ Feign 是一个声明式的伪 Http 客户端，它使得写 Http 客户端变�
 
 - Feign 采用的是基于接口的注解
 - Feign 整合了 ribbon
-
-### POM
-
-创建一个工程名为 `hello-spring-cloud-alibaba-nacos-consumer-feign` 的服务消费者项目，`pom.xml` 配置如下：
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>cn.mirrorming</groupId>
-        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
-    </parent>
-
-    <artifactId>hello-spring-cloud-alibaba-consumer-feign</artifactId>
-    <packaging>jar</packaging>
-
-    <name>hello-spring-cloud-alibaba-consumer-feign</name>
-    <url>http://www.mirrorming.cn</url>
-    <inceptionYear>2019-Now</inceptionYear>
-
-    <dependencies>
-        <!-- Spring Boot Begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- Spring Boot End -->
-
-        <!-- Spring Cloud Begin -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <!-- Spring Cloud End -->
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>cn.mirrorming.spring.cloud.alibaba.consumer.feign.ConsumerFeignApplication</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
-```
-
 主要增加了 `org.springframework.cloud:spring-cloud-starter-openfeign` 依赖
 
-### Application
+> 通过 `@EnableFeignClients` 注解开启 Feign 功能
 
-通过 `@EnableFeignClients` 注解开启 Feign 功能
-
-```java
-package cn.mirrorming.spring.cloud.alibaba.consumer.feign;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
-
-/**
- * @author mirror
- */
-@SpringBootApplication
-@EnableDiscoveryClient
-@EnableFeignClients
-public class ConsumerFeignApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ConsumerFeignApplication.class, args);
-    }
-}
-```
-
-### 创建 Feign 接口
+### Feign 接口
 
 通过 `@FeignClient("服务名")` 注解来指定调用哪个服务。代码如下：
 
@@ -917,53 +291,6 @@ public interface ProviderService {
 }
 
 ```
-
-### Controller
-
-```java
-package cn.mirrorming.spring.cloud.alibaba.consumer.feign.controller;
-
-import cn.mirrorming.spring.cloud.alibaba.consumer.feign.service.ProviderService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class ProviderController {
-
-    @Autowired
-    private ProviderService providerService;
-
-    @GetMapping("echo")
-    public String echo() {
-        return providerService.echo("Feign Client");
-    }
-}
-```
-
-
-
-### application.yml
-
-```yaml
-spring:
-  application:
-    name: consumer-feign
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-
-server:
-  port: 9092
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-```
-
 ### 启动工程
 
 这时打开 `http://localhost:9092/echo` ，你会在浏览器上看到：
@@ -1002,7 +329,7 @@ Hello Nacos Discovery Feign Client , From port :8082
 
 熔断器打开后，为了避免连锁故障，通过 `fallback` 方法可以直接返回一个固定值。
 
-### 什么是 Sentinel
+### Sentinel
 
 随着微服务的流行，服务和服务之间的稳定性变得越来越重要。 Sentinel 以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。
 
@@ -1148,7 +475,7 @@ spring:
         # 当前应用被sentinel监控的端口
         port: 8719
         # sentinel的dashboard
-        dashboard: 127.0.0.1:8080
+        dashboard: 127.0.0.1:8081
 ```
 
 这里的 `spring.cloud.sentinel.transport.port` 端口配置会在应用对应的机器上启动一个 Http Server，该 Server 会与 Sentinel 控制台做交互。比如 Sentinel 控制台添加了 1 个限流规则，会把规则数据 push 给这个 Http Server 接收，Http Server 再将规则注册到 Sentinel 中。
@@ -1167,7 +494,7 @@ spring:
         server-addr: 127.0.0.1:8848
     sentinel:
       transport:
-        dashboard: 127.0.0.1:8080
+        dashboard: 127.0.0.1:8081
         # 当前应用被sentinel监控的端口
         port: 8719
 
@@ -1199,7 +526,7 @@ feign:
 ## 8. 使用路由网关统一访问接口
 
 
-### 什么是 Spring Cloud Gateway
+### Spring Cloud Gateway
 
 Spring Cloud Gateway 是 Spring 官方基于 Spring 5.0，Spring Boot 2.0 和 Project Reactor 等技术开发的网关，Spring Cloud Gateway 旨在为微服务架构提供一种简单而有效的统一的 API 路由管理方式。**Spring Cloud Gateway 作为 Spring Cloud 生态系中的网关，目标是替代 Netflix ZUUL**，其不仅提供统一的路由方式，并且基于 Filter 链的方式提供了网关基本的功能，例如：安全，监控/埋点，和限流等。
 
@@ -1224,88 +551,11 @@ Spring Cloud Gateway 是 Spring 官方基于 Spring 5.0，Spring Boot 2.0 和 Pr
 
 过滤器之间用虚线分开是因为过滤器可能会在发送代理请求之前（`pre`）或之后（`post`）执行业务逻辑。
 
-### POM
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>cn.mirrorming</groupId>
-        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
-    </parent>
-
-    <artifactId>hello-spring-cloud-alibaba-gateway</artifactId>
-    <packaging>jar</packaging>
-
-    <name>hello-spring-cloud-alibaba-gateway</name>
-    <url>http://www.mirrorming.cn</url>
-    <inceptionYear>2019-Now</inceptionYear>
-
-    <dependencies>
-        <!-- Spring Boot Begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- Spring Boot End -->
-
-        <!-- Spring Cloud Begin -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-        <!-- Spring Cloud End -->
-
-        <!-- Commons Begin -->
-        <!--需要过滤器-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-        <!-- Commons Begin -->
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>cn.mirrorming.spring.cloud.gateway.GatewayApplication</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
-```
-
-主要增加了 `org.springframework.cloud:spring-cloud-starter-gateway` 依赖
+> 主要增加了 `org.springframework.cloud:spring-cloud-starter-gateway` 依赖
 
 #### 特别注意
 
-- Spring Cloud Gateway 不使用 Web 作为服务器，而是 **使用 WebFlux 作为服务器**，Gateway 项目已经依赖了 `starter-webflux`，所以这里 **千万不要依赖 starter-web**
+- Spring Cloud Gateway 不使用 Web 作为服务器，而是 **使用 WebFlux 作为服务器**，Gateway 项目已经依赖了 `starter-webflux`，所以这里 **不要依赖 starter-web**
 - 由于过滤器等功能依然需要 Servlet 支持，故这里还需要依赖 `javax.servlet:javax.servlet-api`
 
 ### Application
@@ -1345,7 +595,7 @@ spring:
     sentinel:
       transport:
         port: 8721
-        dashboard: 127.0.0.1:8080
+        dashboard: 127.0.0.1:8081
     # 路由网关配置
     gateway:
       # 设置与服务注册发现组件结合，这样可以采用服务名的路由策略
@@ -1377,7 +627,7 @@ logging:
     org.springframework.cloud.gateway: debug
 ```
 
-**注意：请仔细阅读注释**
+**注意：请阅读注释**
 
 ### 测试访问
 
@@ -1407,8 +657,6 @@ Hello Nacos Discovery Feign Client , From port :8081
 ### 概述
 
 全局过滤器作用于所有的路由，不需要单独配置，我们可以用它来实现很多统一化处理的业务需求，比如权限认证，IP 访问限制等等。
-
-**注意：截止博客发表时间 2019 年 01 月 10 日，Spring Cloud Gateway 正式版为 2.0.2 其文档并不完善，并且有些地方还要重新设计，这里仅提供一个基本的案例**
 
 **详见：Spring Cloud Gateway Documentation**
 
@@ -1555,77 +803,12 @@ Spring Cloud Alibaba Nacos Config 是 Spring Cloud Config Server 和 Client 的�
 此处以**服务提供者**项目为例
 
 在 `pom.xml` 中增加 `org.springframework.cloud:spring-cloud-starter-alibaba-nacos-config` 依赖
-
+#### 所有 spring-cloud-starter-alibaba 更新 groupId 由 org.springframework.cloud 更新为 com.alibaba.cloud
 ```xml
 <dependency>
-    <groupId>org.springframework.cloud</groupId>
+    <groupId>com.alibaba.cloud</groupId>
     <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
 </dependency>
-```
-
-完整的 `pom.xml` 如下：
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>cn.mirrorming</groupId>
-        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
-    </parent>
-
-    <artifactId>hello-spring-cloud-alibaba-provider</artifactId>
-    <packaging>jar</packaging>
-
-    <name>hello-spring-cloud-alibaba-provider</name>
-    <url>http://www.mirrorming.cn</url>
-    <inceptionYear>2019-Now</inceptionYear>
-
-    <dependencies>
-        <!-- Spring Boot Begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- Spring Boot End -->
-
-        <!-- Spring Cloud Begin -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <!-- Spring Cloud End -->
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>cn.mirrorming.hello.spring.cloud.alibaba.provider.ProviderApplication</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
 ```
 
 ### bootstrap.properties
@@ -2103,3 +1286,478 @@ mvn clean install
 - package：会在 target 目录下创建名为 `skywalking-6.1.0.tar.gz` 的压缩包
 - install：会在本地仓库目录下创建名为 `hello-spring-cloud-external-skywalking-1.0.0-SNAPSHOT-6.1.0.tar.gz` 的压缩包
 
+
+
+
+
+## Spring Cloud Stream - RocketMQ
+
+### 概述
+
+消息队列作为高并发系统的核心组件之一，能够帮助业务系统解构提升开发效率和系统稳定性。主要具有以下优势：
+
+- **削峰填谷：** 主要解决瞬时写压力大于应用服务能力导致消息丢失、系统奔溃等问题
+- **系统解耦：** 解决不同重要程度、不同能力级别系统之间依赖导致一死全死
+- **提升性能：** 当存在一对多调用时，可以发一条消息给消息系统，让消息系统通知相关系统
+- **蓄流压测：** 线上有些链路不好压测，可以通过堆积一定量消息再放开来压测
+
+### RocketMQ
+
+Apache Alibaba RocketMQ 是一个消息中间件。消息中间件中有两个角色：消息生产者和消息消费者。RocketMQ 里同样有这两个概念，消息生产者负责创建消息并发送到 RocketMQ 服务器，RocketMQ 服务器会将消息持久化到磁盘，消息消费者从 RocketMQ 服务器拉取消息并提交给应用消费。
+
+### RocketMQ 特点
+
+RocketMQ 是一款分布式、队列模型的消息中间件，具有以下特点：
+
+- 支持严格的消息顺序
+- 支持 Topic 与 Queue 两种模式
+- 亿级消息堆积能力
+- 比较友好的分布式特性
+- 同时支持 Push 与 Pull 方式消费消息
+- **历经多次天猫双十一海量消息考验**
+
+### RocketMQ 优势
+
+目前主流的 MQ 主要是 RocketMQ、kafka、RabbitMQ，其主要优势有：
+
+- 支持事务型消息（消息发送和 DB 操作保持两方的最终一致性，RabbitMQ 和 Kafka 不支持）
+- 支持结合 RocketMQ 的多个系统之间数据最终一致性（多方事务，二方事务是前提）
+- 支持 18 个级别的延迟消息（RabbitMQ 和 Kafka 不支持）
+- 支持指定次数和时间间隔的失败消息重发（Kafka 不支持，RabbitMQ 需要手动确认）
+- 支持 Consumer 端 Tag 过滤，减少不必要的网络传输（RabbitMQ 和 Kafka 不支持）
+- 支持重复消费（RabbitMQ 不支持，Kafka 支持）
+
+### 基于 Docker 安装 RocketMQ
+
+#### docker-compose.yml
+
+**注意：启动 RocketMQ Server + Broker + Console 至少需要 2G 内存**
+
+```yaml
+version: '3.5'
+services:
+  rmqnamesrv:
+    image: foxiswho/rocketmq:server
+    container_name: rmqnamesrv
+    ports:
+      - 9876:9876
+    volumes:
+      - ./data/logs:/opt/logs
+      - ./data/store:/opt/store
+    networks:
+        rmq:
+          aliases:
+            - rmqnamesrv
+
+  rmqbroker:
+    image: foxiswho/rocketmq:broker
+    container_name: rmqbroker
+    ports:
+      - 10909:10909
+      - 10911:10911
+    volumes:
+      - ./data/logs:/opt/logs
+      - ./data/store:/opt/store
+      - ./data/brokerconf/broker.conf:/etc/rocketmq/broker.conf
+    environment:
+        NAMESRV_ADDR: "rmqnamesrv:9876"
+        JAVA_OPTS: " -Duser.home=/opt"
+        JAVA_OPT_EXT: "-server -Xms128m -Xmx128m -Xmn128m"
+    command: mqbroker -c /etc/rocketmq/broker.conf
+    depends_on:
+      - rmqnamesrv
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker
+
+  rmqconsole:
+    image: styletang/rocketmq-console-ng
+    container_name: rmqconsole
+    ports:
+      - 8080:8080
+    environment:
+        JAVA_OPTS: "-Drocketmq.namesrv.addr=rmqnamesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    depends_on:
+      - rmqnamesrv
+    networks:
+      rmq:
+        aliases:
+          - rmqconsole
+
+networks:
+  rmq:
+    name: rmq
+    driver: bridge
+```
+
+
+
+#### broker.conf
+
+RocketMQ Broker 需要一个配置文件，按照上面的 Compose 配置，我们需要在 `./data/brokerconf/` 目录下创建一个名为 `broker.conf` 的配置文件，内容如下：
+
+```text
+# 所属集群名字
+brokerClusterName=DefaultCluster
+
+# broker 名字，注意此处不同的配置文件填写的不一样，如果在 broker-a.properties 使用: broker-a,
+# 在 broker-b.properties 使用: broker-b
+brokerName=broker-a
+
+# 0 表示 Master，> 0 表示 Slave
+brokerId=0
+
+# nameServer地址，分号分割
+# namesrvAddr=rocketmq-nameserver1:9876;rocketmq-nameserver2:9876
+
+# 启动IP,如果 docker 报 com.alibaba.rocketmq.remoting.exception.RemotingConnectException: connect to <192.168.0.120:10909> failed
+# 解决方式1 加上一句 producer.setVipChannelEnabled(false);，解决方式2 brokerIP1 设置宿主机IP，不要使用docker 内部IP
+brokerIP1=192.168.xx.xx  #注意！！！此处要设置宿主机IP
+
+# 在发送消息时，自动创建服务器不存在的topic，默认创建的队列数
+defaultTopicQueueNums=4
+
+# 是否允许 Broker 自动创建 Topic，建议线下开启，线上关闭 ！！！这里仔细看是 false，false，false
+autoCreateTopicEnable=true
+
+# 是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭
+autoCreateSubscriptionGroup=true
+
+# Broker 对外服务的监听端口
+listenPort=10911
+
+# 删除文件时间点，默认凌晨4点
+deleteWhen=04
+
+# 文件保留时间，默认48小时
+fileReservedTime=120
+
+# commitLog 每个文件的大小默认1G
+mapedFileSizeCommitLog=1073741824
+
+# ConsumeQueue 每个文件默认存 30W 条，根据业务情况调整
+mapedFileSizeConsumeQueue=300000
+
+# destroyMapedFileIntervalForcibly=120000
+# redeleteHangedFileInterval=120000
+# 检测物理文件磁盘空间
+diskMaxUsedSpaceRatio=88
+# 存储路径
+# storePathRootDir=/home/ztztdata/rocketmq-all-4.1.0-incubating/store
+# commitLog 存储路径
+# storePathCommitLog=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/commitlog
+# 消费队列存储
+# storePathConsumeQueue=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/consumequeue
+# 消息索引存储路径
+# storePathIndex=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/index
+# checkpoint 文件存储路径
+# storeCheckpoint=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/checkpoint
+# abort 文件存储路径
+# abortFile=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/abort
+# 限制的消息大小
+maxMessageSize=65536
+
+# flushCommitLogLeastPages=4
+# flushConsumeQueueLeastPages=2
+# flushCommitLogThoroughInterval=10000
+# flushConsumeQueueThoroughInterval=60000
+
+# Broker 的角色
+# - ASYNC_MASTER 异步复制Master
+# - SYNC_MASTER 同步双写Master
+# - SLAVE
+brokerRole=ASYNC_MASTER
+
+# 刷盘方式
+# - ASYNC_FLUSH 异步刷盘
+# - SYNC_FLUSH 同步刷盘
+flushDiskType=ASYNC_FLUSH
+
+# 发消息线程池数量
+# sendMessageThreadPoolNums=128
+# 拉消息线程池数量
+# pullMessageThreadPoolNums=128
+```
+
+#### RocketMQ 控制台
+
+访问 http://IP:8080 登入控制台
+
+### RocketMQ 生产者
+
+#### 概述
+
+RocketMQ 是一款开源的分布式消息系统，基于高可用分布式集群技术，提供低延时的、高可靠的消息发布与订阅服务。
+
+由于本教程整个案例基于 Spring Cloud，故我们采用 Spring Cloud Stream 完成一次发布和订阅
+
+[官方教程](https://github.com/spring-cloud-incubator/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-examples/rocketmq-example/readme-zh.md)
+
+#### Spring Cloud Stream
+
+Spring Cloud Stream 是一个用于构建基于消息的微服务应用框架。它基于 Spring Boot 来创建具有生产级别的单机 Spring 应用，并且使用 `Spring Integration` 与 Broker 进行连接。
+
+Spring Cloud Stream 提供了消息中间件配置的统一抽象，推出了 `publish-subscribe`、`consumer groups`、`partition` 这些统一的概念。
+
+Spring Cloud Stream 内部有两个概念：
+
+- **Binder：** 跟外部消息中间件集成的组件，用来创建 Binding，各消息中间件都有自己的 Binder 实现。
+- **Binding：** 包括 Input Binding 和 Output Binding。
+
+Binding 在消息中间件与应用程序提供的 Provider 和 Consumer 之间提供了一个桥梁，实现了开发者只需使用应用程序的 Provider 或 Consumer 生产或消费数据即可，屏蔽了开发者与底层消息中间件的接触。
+
+
+
+#### 消息生产者服务
+
+```java
+package cn.mirrorming.spring.cloud.alibaba.rocketmq.provider.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author mirror
+ */
+@Service
+public class ProviderService {
+    @Autowired
+    private MessageChannel output;
+
+    public void send(String message) {
+        output.send(MessageBuilder.withPayload(message).build());
+    }
+}
+
+```
+
+```java
+package cn.mirrorming.spring.cloud.alibaba.rocketmq.provider.controller;
+
+import cn.mirrorming.spring.cloud.alibaba.rocketmq.provider.service.ProviderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author mirror
+ */
+@RestController
+public class TestController {
+    @Autowired
+    private ProviderService providerService;
+
+    @GetMapping("/test")
+    public String run() {
+        providerService.send("Hello RocketMQ");
+        return "ok";
+    }
+}
+
+```
+
+
+
+#### Application
+
+配置 Output(`Source.class`) 的 Binding 信息并配合 `@EnableBinding` 注解使其生效
+
+```java
+package cn.mirrorming.spring.cloud.alibaba.rocketmq.provider;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Source;
+
+/**
+ * @author mirror
+ */
+@SpringBootApplication
+@EnableBinding({Source.class})
+public class RocketMQProviderApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(RocketMQProviderApplication.class, args);
+    }
+}
+
+```
+
+
+
+#### application.yml
+
+```yaml
+spring:
+  application:
+    name: rocketmq-provider
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          # RocketMQ 服务器地址
+          namesrv-addr: 192.168.2.116:9876
+      bindings:
+        # 这里是个 Map 类型参数，{} 为 YAML 中 Map 的行内写法
+        output: {destination: test-topic1, content-type: application/json}
+
+server:
+  port: 9093
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+```
+
+运行成功后即可在 RocketMQ 控制台的 `消息` 列表中选择 `test-topic` 主题即可看到发送的消息
+
+
+
+###  RocketMQ 消费者
+
+#### POM
+
+主要增加了 `org.springframework.cloud:spring-cloud-starter-stream-rocketmq` 依赖
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.mirrorming</groupId>
+        <artifactId>hello-spring-cloud-alibaba-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../hello-spring-cloud-alibaba-dependencies/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>hello-spring-cloud-alibaba-rocketmq-consumer</artifactId>
+    <packaging>jar</packaging>
+
+    <name>hello-spring-cloud-alibaba-rocketmq-consumer</name>
+    <url>http://mirrorming.cn</url>
+    <inceptionYear>2019-Now</inceptionYear>
+
+    <dependencies>
+        <!-- Spring Boot Begin -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- Spring Boot End -->
+
+        <!-- Spring Cloud Begin -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+        </dependency>
+        <!-- Spring Cloud End -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>cn.mirrorming.spring.cloud.alibaba.rocketmq.consumer.RocketMQConsumerApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+
+
+#### 消息消费者服务
+
+主要使用 `@StreamListener("input")` 注解来订阅从名为 `input` 的 Binding 中接收的消息
+
+```java
+package cn.mirrorming.spring.cloud.alibaba.rocketmq.consumer.service;
+
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author mirror
+ */
+@Service
+public class ConsumerReceive {
+
+    @StreamListener("input")
+    public void receiveInput(String message) {
+        System.out.println("Receive input: " + message);
+    }
+}
+```
+
+
+
+#### Application
+
+配置 Input(`Sink.class`) 的 Binding 信息并配合 `@EnableBinding` 注解使其生效
+
+```java
+package cn.mirrorming.spring.cloud.alibaba.rocketmq.consumer;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Sink;
+
+/**
+ * @author mirror
+ */
+@SpringBootApplication
+@EnableBinding({Sink.class})
+public class RocketMQConsumerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(RocketMQConsumerApplication.class, args);
+    }
+}
+```
+
+#### application.yml
+
+```yaml
+spring:
+  application:
+    name: rocketmq-consumer
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          namesrv-addr: 192.168.2.116:9876
+        bindings:
+          input: {consumer.orderly: true}
+      bindings:
+        input: {destination: test-topic1, content-type: text/plain, group: test-group, consumer.maxAttempts: 1}
+
+server:
+  port: 9094
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+```
+
+运行成功后即可在控制台接收到消息：`Receive input: Hello RocketMQ`
