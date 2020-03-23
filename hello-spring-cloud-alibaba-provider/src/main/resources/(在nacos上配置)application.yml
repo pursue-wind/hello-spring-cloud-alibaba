@@ -14,3 +14,14 @@ management:
     web:
       exposure:
         include: "*"
+
+
+#user:
+#  id: 1
+#  name: mireal
+#  age: 17
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"

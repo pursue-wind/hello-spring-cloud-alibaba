@@ -1,11 +1,6 @@
-# hello-spring-cloud-alibaba
-
+# spring-cloud-alibaba
+## [spring-cloud-alibaba 版本说明](https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E)
 ### 概述
-
-**2018 年 10 月 31 日的凌晨，Spring Cloud Alibaba 正式入驻了 Spring Cloud 官方孵化器，并在 Maven 中央库发布了第一个版本。**
-
-[Spring Cloud for Alibaba 0.2.0 released](https://spring.io/blog/2018/10/30/spring-cloud-for-alibaba-0-2-0-released)
-
 > The Spring Cloud Alibaba project, consisting of Alibaba’s open-source components and several Alibaba Cloud products, aims to implement and expose well known Spring Framework patterns and abstractions to bring the benefits of Spring Boot and Spring Cloud to Java developers using Alibaba products.
 
 > Spring Cloud for Alibaba，它是由一些阿里巴巴的开源组件和云产品组成的。这个项目的目的是为了让大家所熟知的 Spring 框架，其优秀的设计模式和抽象理念，以给使用阿里巴巴产品的 Java 开发者带来使用 Spring Boot 和 Spring Cloud 的更多便利。
@@ -37,19 +32,13 @@ Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。�
 ## 1. 创建统一的依赖管理
 ### 概述
 
+### 依赖管理项目 - hello-spring-cloud-alibaba-dependencies
 
-
-> 当前 Spring Cloud Alibaba 的 0.2.1.RELEASE 版本基于 Spring Cloud Finchley（F）开发，故在选择 Spring Boot 版本时不要使用 2.1.0 及以上版本（因为 2.1.x 版本必须使用 Spring Cloud Greenwich，俗称 G 版），请使用官方 Demo 中使用的 2.0.6.RELEASE，以免发生意想不到的问题（比如服务无法注册到服务器）
-
-Spring Cloud Alibaba 项目都是基于 Spring Cloud，而 Spring Cloud 项目又是基于 Spring Boot 进行开发，并且都是使用 Maven 做项目管理工具。在实际开发中，我们一般都会创建一个依赖管理项目作为 Maven 的 Parent 项目使用，这样做可以极大的方便我们对 Jar 包版本的统一管理。
-
-### 依赖管理项目
-
-创建一个工程名为 `hello-spring-cloud-alibaba-dependencies` 的项目，2020/3/23更新，升级`spring-cloud-alibaba-dependencies`和`spring-cloud-dependencies`版本
+> 2020/3/23更新，升级`spring-cloud-alibaba-dependencies`和`spring-cloud-dependencies`版本
 
 - parent：继承了 Spring Boot 的 Parent，表示我们是一个 Spring Boot 工程
 - package：`pom`，表示该项目仅当做依赖项目，没有具体的实现代码
-- `spring-cloud-alibaba-dependencies`：升级为 `2.1.0.RELEASE` 
+- `spring-cloud-alibaba-dependencies`：升级为 `2.2.0.RELEASE` 
 - `spring-cloud-dependencies`：升级为 `Hoxton.RELEASE` 
 - build：配置了项目所需的各种插件
 - repositories：配置项目下载依赖时的第三方库
