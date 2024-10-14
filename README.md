@@ -36,8 +36,8 @@ Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。�
 
 - parent：继承了 Spring Boot 的 Parent，表示我们是一个 Spring Boot 工程
 - package：`pom`，表示该项目仅当做依赖项目，没有具体的实现代码
-- `spring-cloud-alibaba-dependencies`：升级为 `2.2.0.RELEASE` 
-- `spring-cloud-dependencies`：升级为 `Hoxton.RELEASE` 
+- `spring-cloud-alibaba-dependencies`：升级为 `2.2.0.RELEASE`
+- `spring-cloud-dependencies`：升级为 `Hoxton.RELEASE`
 - build：配置了项目所需的各种插件
 - repositories：配置项目下载依赖时的第三方库
 
@@ -57,7 +57,7 @@ Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 N
 
 ### 基本架构及概念
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-start.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/nacos-start.png?raw=true)
 
 #### 服务 (Service)
 
@@ -105,7 +105,7 @@ Nacos 依赖 Java 环境来运行。如果您是从代码开始构建并运行 N
 - 64 bit JDK 1.8+
 - Maven 3.2.x+
 
-#### docker-compose 方式启动 
+#### docker-compose 方式启动
 ```
 version: "2"
 services:
@@ -373,13 +373,13 @@ cd distribution/target/nacos-server-0.7.0/nacos/bin
 startup.cmd
 ```
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-start.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/nacos-start.png?raw=true)
 
 ### 访问服务
 
 打开浏览器访问：http://127.0.0.1:8848/nacos
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/nacos.png?raw=true)
 
 
 ## 3. 服务提供者 - hello-spring-cloud-alibaba-provider
@@ -392,7 +392,7 @@ startup.cmd
 
 通过浏览器访问 `http://localhost:8848/nacos`，即 Nacos Server 网址
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-provider.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/nacos-provider.png?raw=true)
 
 你会发现一个服务已经注册在服务中了，服务名为 `nacos-provider`
 
@@ -413,7 +413,7 @@ spring-cloud-starter-alibaba-nacos-discovery 在实现的时候提供了一个 E
 
 访问 `http://localhost:8081/actuator/nacos-discovery` 你会看到：
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-discovery.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/nacos-discovery.png?raw=true)
 
 ### 附：nacos-starter-更多配置项信息)附：Nacos Starter 更多配置项信息
 
@@ -466,7 +466,7 @@ public class ConsumerConfiguration {
 
 通过浏览器访问 `http://localhost:8848/nacos`，即 Nacos Server 网址
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/consumer.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/consumer.png?raw=true)
 
 你会发现多了一个名为 `nacos-consumer` 的服务
 
@@ -481,7 +481,7 @@ Hello Nacos Discovery consumer
 
 通过浏览器访问 `http://localhost:9091/actuator/nacos-discovery` 你会在浏览器上看到：
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-discovery2.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/nacos-discovery2.png?raw=true)
 
 ## 5. 创建服务消费者（Feign）- hello-spring-cloud-alibaba-nacos-consumer-feign
 
@@ -491,7 +491,7 @@ Feign 是一个声明式的伪 Http 客户端，它使得写 Http 客户端变�
 
 - Feign 采用的是基于接口的注解
 - Feign 整合了 ribbon
-主要增加了 `org.springframework.cloud:spring-cloud-starter-openfeign` 依赖
+  主要增加了 `org.springframework.cloud:spring-cloud-starter-openfeign` 依赖
 
 > 通过 `@EnableFeignClients` 注解开启 Feign 功能
 
@@ -526,7 +526,7 @@ Hello Nacos Discovery Hi Feign
 
 - IDEA设置
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/loadbalance-setting.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/loadbalance-setting.png?raw=true)
 
 - 启动多个 `consumer-provider` 实例
 
@@ -742,7 +742,7 @@ feign:
 
 触发熔断后，此时会多一个名为 `consumer-feign` 的服务
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/sentinel-dashboard.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/sentinel-dashboard.png?raw=true)
 
 
 
@@ -753,7 +753,7 @@ feign:
 
 Spring Cloud Gateway 是 Spring 官方基于 Spring 5.0，Spring Boot 2.0 和 Project Reactor 等技术开发的网关，Spring Cloud Gateway 旨在为微服务架构提供一种简单而有效的统一的 API 路由管理方式。**Spring Cloud Gateway 作为 Spring Cloud 生态系中的网关，目标是替代 Netflix ZUUL**，其不仅提供统一的路由方式，并且基于 Filter 链的方式提供了网关基本的功能，例如：安全，监控/埋点，和限流等。
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/gateway.jpg?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/gateway.jpg?raw=true)
 
 ### Spring Cloud Gateway 功能特征
 
@@ -885,7 +885,7 @@ Hello Nacos Discovery Feign Client , From port :8081
 
 ### 声明周期
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/gateway-filter.jpg?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/gateway-filter.jpg?raw=true)
 
 Spring Cloud Gateway 基于 Project Reactor 和 WebFlux，采用响应式编程风格，打开它的 Filter 的接口 GlobalFilter 你会发现它只有一个方法 filter。
 
@@ -1011,9 +1011,9 @@ Spring Cloud Alibaba Nacos Config 是 Spring Cloud Config Server 和 Client 的�
 
 - 新建配置文件，此处以 **服务消费者Feign**项目为例
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-config.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/nacos-config.png?raw=true)
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-config2.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/nacos-config2.png?raw=true)
 
 **注意：Data ID 的默认扩展名为 .properties ，希望使用 YAML 配置，此处必须指明是 .yaml**
 
@@ -1093,7 +1093,7 @@ Hello mirror
 
 此时观察控制台日志，你会发现我们已经成功刷新了配置
 
-![autoupdate](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/nacos-config-autoupdate.png?raw=true)
+![autoupdate](./hello-spring-cloud-alibaba-servers/resources/nacos-config-autoupdate.png?raw=true)
 
 - 刷新浏览器，浏览器显示
 
@@ -1154,11 +1154,11 @@ spring.cloud.nacos.config.server-addr=127.0.0.1:8848
 
 微服务架构是通过业务来划分服务的，使用 REST 调用。对外暴露的一个接口，可能需要很多个服务协同才能完成这个接口功能，如果链路上任何一个服务出现问题或者网络超时，都会形成导致接口调用失败。随着业务的不断扩张，服务之间互相调用会越来越复杂。
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-1.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-1.png?raw=true)
 
 随着服务的越来越多，对调用链的分析会越来越复杂。它们之间的调用关系也许如下：
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-2.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-2.png?raw=true)
 
 面对以上情况，我们就需要一些可以帮助理解系统行为、用于分析性能问题的工具，以便发生故障的时候，能够快速定位和解决问题，这就是所谓的 APM（应用性能管理）。
 
@@ -1166,7 +1166,7 @@ spring.cloud.nacos.config.server-addr=127.0.0.1:8848
 
 目前主要的一些 APM 工具有: Cat、Zipkin、Pinpoint、SkyWalking；Apache SkyWalking 是观察性分析平台和应用性能管理系统。提供分布式追踪、服务网格遥测分析、度量聚合和可视化一体化解决方案。
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-3.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-3.png?raw=true)
 
 - **Skywalking Agent：** 使用 JavaAgent 做字节码植入，无侵入式的收集，并通过 HTTP 或者 gRPC 方式发送数据到 SkyWalking Collector。
 - **SkyWalking Collector：** 链路数据收集器，对 agent 传过来的数据进行整合分析处理并落入相关的数据存储中。
@@ -1284,11 +1284,11 @@ storage:
 
 通过浏览器访问 http://localhost:8080 出现如下界面即表示启动成功
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-login.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-login.png?raw=true)
 
 默认的用户名密码为：admin/admin，登录成功后，效果如下图
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-login-success.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-login-success.png?raw=true)
 
 # SkyWalking 客户端配置
 
@@ -1348,7 +1348,7 @@ INFO 2019-08-04 20:03:49:051 main SnifferConfigInitializer :  Config file found 
 
 启动服务，访问接口再刷新 SkyWalking Web UI，你会发现 Service 与 Endpoint 已经成功检测到了
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-agent-1.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-agent-1.png?raw=true)
 
 至此，表示 SkyWalking 链路追踪配置成功
 
@@ -1360,19 +1360,19 @@ SkyWalking 通过业务调用监控进行依赖分析，提供给我们了服务
 
 点击 `Trace` 菜单，进入追踪页
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-trace-1.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-trace-1.png?raw=true)
 
 点击 `Trace ID` 展开详细信息
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-trace-2.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-trace-2.png?raw=true)
 
 #### 服务性能指标监控
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-service-1.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-service-1.png?raw=true)
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-service-1.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-service-1.png?raw=true)
 
-![img](https://github.com/mirrormingzZ/hello-spring-cloud-alibaba/blob/master/hello-spring-cloud-alibaba-nacos-server/resources/skywalking-topology.png?raw=true)
+![img](./hello-spring-cloud-alibaba-servers/resources/skywalking-topology.png?raw=true)
 
 - **Avg SLA：** 服务可用性（主要是通过请求成功与失败次数来计算）
 - **CPM：** 每分钟调用次数
